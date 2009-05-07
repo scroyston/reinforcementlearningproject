@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.07pt}
+\beamer@sectionintoc {1}{IntroSec}{2}{0}{1}
+\beamer@sectionintoc {2}{MainSec}{4}{0}{2}
+\beamer@sectionintoc {3}{LastSec}{6}{0}{3}
