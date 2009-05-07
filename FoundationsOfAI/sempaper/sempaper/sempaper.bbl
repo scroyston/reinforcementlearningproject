@@ -1,0 +1,87 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{TCR{\etalchar{+}}05}
+
+\bibitem[ASP00]{Arai00multi-agentreinforcement}
+Sachiyo Arai, Katia Sycara, and Terry~R. Payne.
+\newblock Multi-agent reinforcement learning for planning and scheduling
+  multiple goals.
+\newblock In {\em In Proceedings of the Fourth International Conference on
+  MultiAgent Systems}, pages 359--360, 2000.
+
+\bibitem[BSW90]{Barto90learningand}
+Andrew~G. Barto, R.~S. Sutton, and C.~J. C.~H. Watkins.
+\newblock Learning and sequential decision making.
+\newblock In {\em Learning and Computational Neuroscience}, pages 539--602. MIT
+  Press, 1990.
+
+\bibitem[CB96]{Crites96improvingelevator}
+Robert~H. Crites and Andrew~G. Barto.
+\newblock Improving elevator performance using reinforcement learning.
+\newblock In {\em Advances in Neural Information Processing Systems 8}, pages
+  1017--1023. MIT Press, 1996.
+
+\bibitem[How60]{Howard60}
+Ronald~A. Howard.
+\newblock {\em Dynamic Programming and Markov Processes}.
+\newblock {The MIT Press}, Cambridge, Massachusetts, 1960.
+
+\bibitem[Lit94]{Littman94}
+Michael~L. Littman.
+\newblock Markov games as a framework for multi-agent reinforcement learning.
+\newblock In {\em In Proceedings of the Eleventh International Conference on
+  Machine Learning}, pages 157--163. Morgan Kaufmann, 1994.
+
+\bibitem[Lit01]{Littman01}
+Michael~L. Littman.
+\newblock Value-function reinforcement learning in markov games.
+\newblock {\em Cognitive Systems Research}, 2(1):55 -- 66, 2001.
+
+\bibitem[Mar04]{Markelic04reinforcementlearning}
+Irene Markelic.
+\newblock {Reinforcement Learning als Methode zur Entscheidungsfindung beim
+  simulierten Roboterfu\ss ball}.
+\newblock Technical report, Universit\"at Koblenz-Landau, 2004.
+
+\bibitem[Owe95]{owen95}
+Guillermo Owen.
+\newblock {\em Game Theory: Third Edition}.
+\newblock Academic Press, 1995.
+
+\bibitem[Sam59]{Samuel59}
+A.~L. Samuel.
+\newblock Some studies in machine learning using the game of checkers.
+\newblock {\em IBM J. of Res. Develop.}, 3:211--229, July 1959.
+\newblock (Reprinted in {\em Computers and Thought}, (eds. E. A. Feigenbaum and
+  J. Feldman), McGraw-Hill, 1963, pages 39--70).
+
+\bibitem[SB98]{Sutton98}
+Richard~S. Sutton and Andrew~G. Barto.
+\newblock {\em Reinforcement Learning: An Introduction (Adaptive Computation
+  and Machine Learning)}.
+\newblock {The MIT Press}, March 1998.
+
+\bibitem[Tan93]{Tan93multi-agentreinforcement}
+Ming Tan.
+\newblock Multi-agent reinforcement learning: Independent vs. cooperative
+  agents.
+\newblock In {\em In Proceedings of the Tenth International Conference on
+  Machine Learning}, pages 330--337. Morgan Kaufmann, 1993.
+
+\bibitem[TCR{\etalchar{+}}05]{Tuyls05multi-agentrelational}
+Karl Tuyls, Tom Croonenborghs, Jan Ramon, Robby Goetschalckx, and Maurice
+  Bruynooghe.
+\newblock Multi-agent relational reinforcement learning.
+\newblock In {\em Proceedings of the First International Workshop on Learning
+  and Adaptation in Multi Agent Systems}, pages 123--132, 2005.
+
+\bibitem[Tes92]{Tesauro92practicalissues}
+Gerald Tesauro.
+\newblock Practical issues in temporal difference learning.
+\newblock In {\em Machine Learning}, pages 257--277, 1992.
+
+\bibitem[Tes02]{Tesauro02programmingbackgammon}
+Gerald Tesauro.
+\newblock Programming backgammon using self-teaching neural nets.
+\newblock {\em Artificial Intelligence}, 134:181--199, 2002.
+
+\end{thebibliography}

@@ -1,0 +1,277 @@
+\ProvidesPackageRCS $Header: /home/lufg/Lehre/cvsroot/SemIL07/talks/template/beamerouterthemeAachen.sty,v 1.1.1.1 2006/12/22 10:00:13 stf Exp $
+
+% Copyright 2003 by Till Tantau <tantau@users.sourceforge.net>
+%
+% This program can be redistributed and/or modified under the terms
+% of the GNU Public License, version 2.
+
+
+
+
+
+%% outer theme
+
+
+\newdimen\beamer@sidebarwidth
+\newdimen\beamer@headheight
+\usebeamerfont{frametitle}
+\beamer@sidebarwidth=2.5\baselineskip
+\beamer@headheight=2.5\baselineskip
+\reset@font
+
+\def\beamer@lefttext{left}
+
+\DeclareOptionBeamer{hideothersubsections}[]{\beamer@nav@subsectionstyle{show/show/hide}}
+\DeclareOptionBeamer{hideallsubsections}[]{\beamer@nav@subsectionstyle{hide}}
+
+\DeclareOptionBeamer{width}{\beamer@sidebarwidth=#1}
+\DeclareOptionBeamer{height}{\beamer@headheight=#1}
+\DeclareOptionBeamer{left}{\def\beamer@sidebarside{left}}
+\DeclareOptionBeamer{right}{\def\beamer@sidebarside{right}}
+\ExecuteOptionsBeamer{left}
+\ProcessOptionsBeamer
+
+
+\mode<presentation>
+
+
+
+%%% infolines begin
+
+
+%\setbeamercolor*{author in head/foot}{parent=palette tertiary}
+%\setbeamercolor*{title in head/foot}{parent=palette secondary}
+%\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+%\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+%\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+\defbeamertemplate*{footline}{Aachen theme}
+{%
+%  \leavevmode%  
+  \ifnum\c@page>1%
+  \vskip-5ex%
+ \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+%  \begin{beamercolorbox}[wd=\the \@tempdima,ht=1pt]{sidebar}%
+%  \end{beamercolorbox}%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\beamer@sidebarwidth,ht=5ex]{sidebar}%
+      \usebeamerfont{title in sidebar}%
+      \usebeamercolor[fg]{title in sidebar}%
+      \centering\insertshortdate{}%
+      \vskip6pt%
+    \end{beamercolorbox}% 
+    \@tempdima=\textwidth%
+    \advance\@tempdima by-0.75\beamer@rightmargin%
+    \advance\@tempdima by-\beamer@sidebarwidth%
+    \begin{beamercolorbox}[wd=\the \@tempdima,ht=5ex]{frametitle}%
+      \usebeamercolor[fg]{frametitle}%
+      \usebeamerfont{title in sidebar}%\hspace*{2ex}%\insertshortdate{}%
+      \hfill\insertframenumber{} / \inserttotalframenumber%\hspace*{2ex}%
+      \vskip6pt%
+    \end{beamercolorbox}%
+  }%
+%  \vskip3pt%
+  \else%
+%  \leavevmode
+%  \hfill\insertlogo%
+  \fi
+}
+
+%\defbeamertemplate*{headline}{Aachen theme}
+%{
+%  \leavevmode%
+%  \hbox{%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+%    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{subsection in head/foot}%
+%    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+%\setbeamersize{text margin left=1em,text margin right=1em}
+
+
+%%% infolines end
+
+
+
+%%%% Navigation
+\defbeamertemplate*{navigation symbols}{Aachen theme}
+{%
+  \leftline{
+  \hbox{%
+    \hbox{\insertslidenavigationsymbol}
+    \hbox{\insertframenavigationsymbol}
+    \hbox{\insertsubsectionnavigationsymbol}
+    \hbox{\insertsectionnavigationsymbol}
+    \hbox{\insertdocnavigationsymbol}
+    \hbox{\insertbackfindforwardnavigationsymbol}%
+  }%
+}
+}
+
+%%%% /Navigation
+
+
+
+
+
+
+\ifdim\beamer@headheight>0pt
+% if head height is 0pt, use default frame title
+
+  \setbeamercolor*{frametitle}{parent=sidebar}
+
+  \defbeamertemplate*{frametitle}{Aachen theme}
+  {%
+    \nointerlineskip%
+    \vskip-\beamer@headheight%
+    \vbox to \beamer@headheight{%
+      \vfil
+      \leftskip=-\beamer@leftmargin%
+      \advance\leftskip by0.3cm%
+      \rightskip=-\beamer@rightmargin%
+      \advance\rightskip by0.3cm plus1fil%
+      {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\par}%
+      {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertframesubtitle\par}%
+      \vbox{}%
+      \vskip-1em%
+      \vfil
+    }%
+  }
+
+  \defbeamertemplate*{headline}{Aachen theme}
+  {%
+    \begin{beamercolorbox}[wd=0.5\paperwidth]{frametitle}
+      \ifx\beamer@sidebarside\beamer@lefttext%
+      \else%
+        \hfill%
+      \fi%
+      \ifdim\beamer@sidebarwidth>0pt%  
+        \usebeamercolor[bg]{logo}%
+        \vrule width\beamer@sidebarwidth height \beamer@headheight%
+        \hskip-\beamer@sidebarwidth%
+        \hbox to \beamer@sidebarwidth{\hss\vbox to
+          \beamer@headheight{\vss\hbox{\color{fg}}\vss}\hss}
+      \else%
+        \vrule width0pt height \beamer@headheight%  
+      \fi%
+      \insertlogo
+    \end{beamercolorbox}
+  }
+\fi
+
+
+
+%\defbeamertemplate*{footline in Aachen}{Aachen theme}
+%{%
+%  \leavevmode%
+%  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+%    \usebeamerfont{author in head/foot}\insertshortauthor
+%  \end{beamercolorbox}%
+%  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%    \usebeamerfont{title in head/foot}\insertshorttitle
+%  \end{beamercolorbox}}%
+%  \vskip0pt%
+%}
+
+
+
+
+\def\beamer@sidebarformat#1#2#3{%
+  \begin{beamercolorbox}[wd=\beamer@sidebarwidth,leftskip=#1,rightskip=1ex plus1fil,vmode]{#2}
+    \vbox{}%
+    #3\par%
+    \vbox{}%
+    \vskip-1.5ex%
+  \end{beamercolorbox}
+}
+
+\defbeamertemplate*{section in sidebar}{Aachen theme}
+{%
+  \vbox{%
+    \vskip1ex%
+    \beamer@sidebarformat{3pt}{section in sidebar}{\insertsectionhead}%
+  }%
+}
+
+\defbeamertemplate*{section in sidebar shaded}{Aachen theme}
+{%
+  \vbox{%
+    \vskip1ex%
+    \beamer@sidebarformat{3pt}{section in sidebar shaded}{\insertsectionhead}%
+  }%
+}
+
+\defbeamertemplate*{subsection in sidebar}{Aachen theme}
+{%
+  \beamer@sidebarformat{5pt}{subsection in sidebar}{\insertsubsectionhead}%
+}
+
+\defbeamertemplate*{subsection in sidebar shaded}{Aachen theme}
+{%
+  \beamer@sidebarformat{5pt}{subsection in sidebar shaded}{\insertsubsectionhead}%
+}
+
+
+\ifdim\beamer@sidebarwidth>0pt
+
+                                % Sidebar
+  \setbeamersize{sidebar width \beamer@sidebarside=\beamer@sidebarwidth}
+  \defbeamertemplate*{sidebar \beamer@sidebarside}{Aachen theme}
+  {
+    \beamer@tempdim=\beamer@sidebarwidth%
+    \advance\beamer@tempdim by -6pt%
+    {\usebeamerfont{title in sidebar}%
+      \vskip1.5em%
+      \hskip3pt%
+      \usebeamercolor[fg]{title in sidebar}%
+      \insertshorttitle[width=\beamer@tempdim,center,respectlinebreaks]\par%
+      \vskip1.25em%
+    }%
+    {%
+      \hskip3pt%
+      \usebeamercolor[fg]{author in sidebar}%
+      \usebeamerfont{author in sidebar}%
+      \insertshortauthor[width=\beamer@tempdim,center,respectlinebreaks]\par%
+      \vskip1.25em%
+    }%
+    \insertverticalnavigation{\beamer@sidebarwidth}%
+    \vfill
+    \ifx\beamer@sidebarside\beamer@lefttext%
+    \else%
+      \usebeamercolor{normal text}%
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+      \vskip2pt%
+      \vfill
+      \inserlogo
+    \fi%
+  }%
+  
+  \ifx\beamer@sidebarside\beamer@lefttext%
+    \defbeamertemplate*{sidebar right}{Aachen theme}
+    {%
+      \vfill%
+      \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+      \vskip2pt}
+    \insertlogo
+  \fi
+                                % Margins
+  \setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+\fi
+
+
+
+
+\mode
+<all>
+
+%%% Local Variables: 
+%%% TeX-master: "~/texmf/tex/latex/beamer/test/test.tex"
+%%% End: 
+

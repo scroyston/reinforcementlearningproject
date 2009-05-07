@@ -1,0 +1,155 @@
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Mode
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mode<presentation>
+{
+  \usetheme[hideallsubsections]{Aachen}
+%  \usetheme{Luebeck}
+  % oder ...
+
+  \setbeamercovered{transparent}
+  % oder auch nicht
+}
+
+
+%%%%%%%%%%%%%
+\newcommand{\topalign}[1]{%
+  \begin{columns}%
+    \begin{column}[T]{0pt}%
+      \vspace*{\textheight}%
+    \end{column}%
+    \begin{column}[T]{\textwidth}%
+      #1%
+    \end{column}%
+  \end{columns}%
+}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Packages
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[latin1]{inputenc}
+\usefonttheme[onlymath]{serif}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+%\usepackage{psfrag}
+%\usepackage{rotating}
+%\usepackage{xmpmulti}
+%\usepackage{pgfarrows}
+%\usepackage{tabularx}
+\usepackage{hyperref}
+%\usepackage{algorithmic}
+\usepackage{program}
+%\usepackage[pst-all]{graphicx}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Macros/Defs
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\colorlet{lightblue}{blue!50!white}
+
+\def\blue#1{\color{blue}#1\color{black}}
+\def\lightblue#1{\color{lightblue}#1\color{black}}
+%\def\lightblue#1{\color{blue}\begin{colormixin}{10!white}#1\end{colormixin}\color{black}}
+\def\red#1{\color{red}#1\color{black}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Title Information
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Robotics]{Some Robotics Slides}
+
+\author[ShortAuthor]{Full Author}
+\institute[RWTH Aachen University]
+{ Knowledge-Based Systems Group\\
+  RWTH Aachen University\\
+  {mail@domain.tld}
+}
+
+\date[shortdate] % (optional, sollte der abgekürzte Konferenzname sein)
+{full date/conf name}
+
+\subject{Subject}
+
+\pgfdeclareimage[height=0.5cm]{university-logo}{pics/logo_blau_rechts}
+\logo{\pgfuseimage{university-logo}}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% make the title area
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Begin Document
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{IntroSec}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{The Frametitle}
+  \begin{itemize}
+  \item an item
+  \item another item
+  \item ...
+  \end{itemize}
+\end{frame}
+
+\section{MainSec}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Yet Another Slide}
+  \begin{columns}
+    \begin{column}{0.4\textwidth}
+      1st column
+      \begin{itemize}
+      \item Item1
+      \item Item2
+      \item ...
+      \end{itemize}
+    \end{column}
+    \hfill
+    \begin{column}{0.6\textwidth}
+      2nd column
+      \begin{center}
+        \includegraphics[width=0.3\textwidth]{pics/KBSG_Logo}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+ 
+\section{LastSec}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Last Slide}
+  \includegraphics[width=0.3\textwidth]{pics/allemaniacs_logo}
+  \href{run:./video.sh}{\beamergotobutton{play video}}  
+\end{frame}
+
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  End Document
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
