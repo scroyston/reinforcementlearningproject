@@ -121,14 +121,18 @@ The general idea of reinforcement learning is visualized in figure \ref{agentWor
 \label{agentWorldModel}
 \end{figure}
 \subsection{Important problems}
-\paragraph{The control problem}
 \paragraph{Problem of exploration and exploitation}
 A difficult task for an agent in an environment is to find the right balance between using the information gained by already visited states (e.g. the values of states in the reinforcement learning case) and trying to explore the environment by taking actions leading to unknown states. One problem that can occur during reinforcement learning is that once the agent has found a way to the goal, it will always use the same way again, without knowing if there is another (probably better) one. We all know this problem when driving to work for example being annoyed about traffic jams, for example. Of course one way found by our initial policy (e.g. the motorway) definitely leads to the goal, but having driven the same way for many times, we try out something new the next day and "explore" the state space in some way. Of course this may also lead to worse results than before, but there also might be faster ways (analogous to better policies) leading to the goal. $\epsilon$-greedy policies are an example for policies that in general choose the action leading to the state with the highest value, but sometimes (with probability $\epsilon$) take random actions.
-\paragraph{The prediction problem}
+\paragraph{The prediction and the control problem}
+To reach our main goal in reinforcement learning, namely to maximize the long-term reward and reach a goal state (at least in a continuous environment), it is necessary to define values for every state that determine how good a state is in terms of maximizing the future rewards. The task to find optimal values predicting the expected reward is referred to as "Prediction problem" in literature. A related problem making use of the solution for the prediction problem is the control problem. A solution to this problem is a plan (an optimal policy) that tells us in every situation which action to take in order to receive the highest reward in a long-term view. So a solution for the prediction problem would give us directly a solution for the control problem.
 \paragraph{Partial observability problem}
+Real world environments are often not fully observable, that means that the agent does not exactly know in which state it will end up after performing an action. This could occur if the values of the sensors cannot clearly indicate if the agent is in state A or state B, because the measurements are characteristic for both states. In the case of partial observability "standard" reinforcement learning algorithms are not applicable, but there are other solution methods based on POMDPs (partial observable Markov Decision Processes).
 \paragraph{Curse of Dimensionality}
-difficulty to determine optimal state and action sets
+In many environments the state and the action space are to huge to be explored completely. Due to this facts there have to be methods to reduce the dimension of those spaces without losing important information.
 \paragraph{Credit Structuring Problem}
+As the agent learns by being rewarded or punished, it is also an important task to structure the rewards in such a way that the agent learns fastest. Taking the game of chess as an example, it would make no sense to give a reward for winning material in general, because this could tempt our agent into winning material instead of checkmating the opponent which has to be seen as the main goal. One disadvantage of delaying the reward to the goal state is that it may take a very long time until the agent reaches this state, because there is no indicator in form of rewards that lead the agent to the final state. This is why learning could take very long, because the state sequence to the goal state in games like chess is very long, also because of the fact that the agent just makes random moves at the beginning, because it has not developed a policy yet. This is why assigning rewards to states is not an easy task at all.
+\paragraph{Non-stationary environments}
+This problem addresses the fact that the environment sometimes changes during learning. So a value function learned for a high number of episodes could be wrong, because the dynamics of the envirionment have already changed in the meantime. If the change of the environment is too fast, learning is no longer possible. Nevertheless, not only reinforcement learning methods, but learning in general is affected by this problem.
 \subsection{Value function and Policies}
 As mentioned before, the main goal of an agent is to find an optimal policy $\pi^{*}$, i.e. a roadmap that enables the agent to choose the right action in each state in order to reach its goal as fast as possible. Or more formally:
 \newtheorem {definition} {Definition}
@@ -539,6 +543,13 @@ Figure \ref{probPolicyRequired} shows a situation that requires a probabilistic 
 \end{minipage}
 \end{figure}
 \subsubsection{Training and Testing}
+This section describes the setup of the games the agents played against each other.\\
+There were four different policies trained, two using the standard Q-learning algorithm and two using the Minimax-Q learning algorithm presented in this section. The policies were always trained against an opponent using a random policy and against an opponent using the same policy as the original agent. So the resulting policies were QR (Q-Learning trained agains random) and QQ (Q-Learning trained against Q-Learning), MR and MM (analogously). The parameters of the Minimax-Q learning algorithm were set to $explor=0,2$, $decay=10^{\log{0.01/10^{6}}}=0,9999954$ (in order to read a learning rate of $0,1$ at the end of the run). The standard Q-Learning algorithm was initialized with the same parameters as the Minimax-Q variation. There were three ways of evaluating the policies:
+\begin{enumerate}
+\item each policy vs. random policy for 100000 steps (probability of $0,1$ for a state being declared a draw)
+\item each policy vs. hand-built policy (deterministic policy with rules for scoring and blocking that won 99,5\% of 5600 games against a random opponent)
+\item a challenger opponent for each of the policies MR, MM, QR and QQ was trained using Q-Learning. The champion policy was always fixed and the challenger was trained against this policy. After that the resulting policies were evaluated against their champions.
+\end{enumerate}
 \subsubsection{Results}
 \begin{table}[htbp]
 \caption{Results of games of the agents trained with different policies (taken from \cite{Littman94})}
