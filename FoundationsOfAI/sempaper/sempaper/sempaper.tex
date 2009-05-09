@@ -170,6 +170,8 @@ is called the action-value function for policy $\pi$.
 As the goal of reinforcement learning is to find an optimal policy from the initial state to the goal, there have to be methods to compute an optimal policy efficiently. A naive way to do so would be trying out all possible policies which means taking every possible action in every state and receiving the rewards from the environment. Of course the complexity of this approach would be too high, because the set of states and the set of actions are very large in general, so exploring the whole search space is inefficient. There are many methods to approximate optimal value functions and therefore also give an approximation for an optimal policy. The first two methods that will be presented use dynamic programming and perform policy or value iteration. This means to start with an arbitrary policy for example, determine the resulting value function for this policy and use this value function to get an improved policy. After this the same procedure is iterated several times until the optimal policy is found (or at least a good approximation). A significant disadvantage of those dynamic programming methods is that they require a complete model of the environment and so they are not applicable if the environment is unknown to the agent.\\
 In contrast Monte-Carlo methods do not require this model. Here the value function is learned by averaging the rewards of many episodes. Because the transition probabilities of the environment are not known (in contrast to DP methods), they have to be determined by many iterations.\\
 Another important kind of reinforcement learning algorithms do not require this environment model and use Temporal Difference learning. This means that they compute the difference between the two values of a value function at different time points (e.g. $Q(s,a)-Q(s',a')$). The presented algorithms Q-learning and SARSA are two examples for this kind of learning method.
+\subsubsection{$\epsilon$-greedy policy}
+In order to derive a policy from the value function, it makes sense to choose the action that maximizes the value of the successor state. But in order to guarantee an optimal exploration of the state space, an $\epsilon$-greedy policy chooses a random action with probability $\epsilon$ instead of trying to choose the "best" action in terms of the highest value of the successor states. Those kind of policies are often used in reinforcement learning algorithms.
 \subsection{Separation from other machine learning approaches}
 This section gives a brief overview of the placement of reinforcement learning in machine learning.
 Machine learning in general distinguishes between three learning approaches: Supervised learning, unsupervised learning and reinforcement learning. The main task of all those approaches is to use the knowledge gained from previous experience to solve new tasks using this knowledge.\\
@@ -398,10 +400,34 @@ Q(s_{t},a_{t}) \gets Q(s_{t},a_{t})+\alpha(r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s
 The basic idea of this update rule is to start with an inital state, choose an action according to the policy (note that the policy that chooses actions and the policy that is improved are identical), execute this action and receive the reward. Afterwards the best action according to the policy ($a_{t+1}$) is chosen and the Q-value of the old state action pair $Q(s_{t},a_{t})$ is updated. Then the procedure is repeated with the new state ($s_{t+1}$) and the new action ($a_{t+1}$) until a terminal state is reached. The complete algorithm is omitted at this point, but with the update rule as its central component it should not be hard to imagine how it should look like. The name of the algorithm "Sarsa" can be formed from the quintuple ($s_{t},a_{t},r_{t+1},s_{t+1},a_{t+1}$). A pseudocode example can be found in \cite{Sutton98}.
 \paragraph{TD($\lambda$)}
 \subsubsection{Eigibility traces as an improvement of reinforcement learning algorithms}
+In the introductory part we faced the problem that reaching a first reward may last a very long time. An additional problem occurs when using standard TD algorithms in this scenario: Only one state value (or state-action value) $V(s)_{t}$ ($Q(s,a)_{t}$) is updated based on the successor value $V(s)_{t+1}$ ($Q(s,a)_{t+1}$). During the next episode we are given no information how to behave until we have reached a recently updated state. So it would be nice if the previously visited state values $V(s)_{t-1},V(s)_{t-2},...$ or state-action values ($Q(s,a)_{t-1},Q(s,a)_{t-2},...$) would also be updated with a specified decay factor such that earlier actions are affected less than recent actions. This is exactly what eligibility traces do. In principle they store an additional value $e(s)$ ($e(s,a)$) for each state or each state-action pair that describes how much influence a state has on the whole state sequence followed by the agent. So if a state value is updated, all other values of states visited before are also updated (with the factor $\gamma \lambda$ ($\lambda$ denotes the decay factor and $\gamma$ the already known discount factor)). This technique can be applied to all known TD-learning algorithms. Algorithm \ref{sarsaLambda} shows an extended implementation of SARSA making use of eigibility traces.
+\begin{algorithm}[htbp]
+\caption{SARSA($\lambda$)}
+\label{sarsaLambda}
+\begin{algorithmic}
+
+\STATE Initialize $Q(s,a)$ arbitrarily and $e(s,a)=0 \forall (s,a)$
+\REPEAT
+\STATE initialize $s,a$
+\REPEAT
+\STATE execute action $a$ and receive reward $r$ and successor state $s'$
+\STATE choose $a'$ from $s'$ according to the policy derived from $Q$
+\STATE $\delta \gets r+\gamma Q(s',a') - Q(s,a)$
+\STATE $e(s,a) \gets e(s,a) +1 $
+\FORALL {state action pairs $(s,a)$}
+\STATE $Q(s,a) \gets Q(s,a) + \alpha \delta e(s,a)$
+\STATE $e(s,a) \gets \gamma \lambda e(s,a)$
+\ENDFOR
+\STATE $s \gets s'$
+\STATE $a \gets a'$
+\UNTIL{$s$ is terminal}
+\UNTIL{maximal number of episodes reached}
+\end{algorithmic}
+\end{algorithm}
+
 \subsection{Applications of reinforcement learning}
 Gives an overview of some interesting applications of reinforcement learning. Perhaps some other interesting stuff could be added here.
 \subsubsection{TD-Gammon}
-
 
 \section{Multi-agent reinforcement learning}
 As we have seen in the previous section, the term reinforcement learning is strongly related to Markov decision processes. Unfortunately the underlying mathematical framework for MDPs only supports environments with one agent. But how to apply the algorithms for MDPs to multiagent environments? Littman's paper (\cite{Littman94}) on multi-agent reinforcement learning addresses this problem and presents a variation of the Q-Learning algorithm, called "Minimax Q-Learning" based on Markov games.
@@ -439,7 +465,7 @@ Those equations look very similar to the equations for MDPs with the min and max
 The algorithm defined in Michael Littmans's paper (\cite{Littman94})
 
 \begin{algorithm}[tb]
-\caption{The Minimax-Q algorithm (adapted from \cite{Litman94})}
+\caption{The Minimax-Q algorithm (adapted from \cite{Littman94})}
 \begin{enumerate}
 \item \textbf{Initialization}
 \begin{algorithmic}
@@ -551,6 +577,10 @@ There were four different policies trained, two using the standard Q-learning al
 \item a challenger opponent for each of the policies MR, MM, QR and QQ was trained using Q-Learning. The champion policy was always fixed and the challenger was trained against this policy. After that the resulting policies were evaluated against their champions.
 \end{enumerate}
 \subsubsection{Results}
+The following table gives an overview of the results of the games played by the agents.\\
+Looking at the table the good performance of the four policies (MR,MM,QR,QQ) versus the random policy become obvious. In the case of QR this does not seem astonishing, because the policy was trained to beat a random opponent. Nevertheless the good performance of MR is remarkable, because the policy always chooses the actions with respect to the optimal behaviour of the opponent (the Minimax principle).\\
+The performance of the different policies against the hand-built opponent were quite surprising. Both MR and MM won about 50\% of the games. The small difference of about 5 \% seems strange, because normally the performance of an agent using the Minimax-Q algorithm does not depend on the opponent it was trained against (due to the fact that it always assumes optimal play). This might be an indicator for the fact that the policy has not yet converged to the optimal one. The performance of QR and QQ against the hand-built opponent show bigger differences. QQ found an optimal policy (probably by luck) that guaranteed a win in about 75 \% of the games whereas QR got stuck in an inferior policy that only won about 25 \% of the games. This also shows the difference between using standard Q-Learning that does not use a minimax approach and tries to adapt optimally to the opponent and tries to exploit its weaknesses and Minimax-Q. Nevertheless it the success of the Q-Learning algorithm versus the hand-built policy seems surprising, because QQ performed much better than the Minimax-Q approaches. Futhermore training two Q-Learning agents against each other is not mathematically justified, as Littman also mentions in his paper. In some cases a local maximum is reached and both agents stop learning, but in other cases this kind of policy training seems to work really well as in this case (see also \cite{Tesauro92}).\\
+In the third part of the experiment, the agents had to play against a challenger policy (i.e. a policy that was trained to beat the original policy, after it had been trained). Again MR and MM performed similarly and one a bit more than one third of the games. The fact that they won games at all is connected to the point that Minimax-Q always tries to find an optimal probabilistic policy, as this is demanded in Markov Games. So the opponent sometimes does not know how the agent will behave and loses games due to this uncertainty. In contrast Q-Learning just finds optimal deterministic policies and this is why both Q-Learning policies used in the soccer scenario completely lost all of their games against their challengers. 
 \begin{table}[htbp]
 \caption{Results of games of the agents trained with different policies (taken from \cite{Littman94})}
 \includegraphics[viewport=122 604 524 698,keepaspectratio,clip,page=6,scale=0.85]{../../ml94-final.pdf}
