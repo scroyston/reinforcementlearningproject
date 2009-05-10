@@ -180,7 +180,7 @@ In unsupervised learning the agent is just given the data itself, but not the co
 Reinforcement learning differs from both previous approaches, because the agent has to discover its environemnt on its own, without having a supervisor that tells him the correct actions. The only feedback if the chosen action was good or bad can be extracted from the reward or punishment the action brings.\\
 But which advantages does this approach have?  In \cite{Sutton98} an example of a Tic-Tac-Toe playing agent is given. Everybody knows that this game always ends up with a draw when both players make the best moves, but it could also be the case that the opponent agent shows weaknesses in certain positions, although it might play well otherwise. A standard approach to those kinds of zero sum games is applying the Minimax algorithm with a simple heuristic that guarantees to gain the best result assuming that the opponent always chooses the best move. One disadvantage here is that always optimal play of the opponent is assumed, although this might be wrong. Applying reinforcement learning algorithms to this kind of game would result in an agent that discovers the weaknesses of its opponent and exploits, whereas a minimax approach would just be able to reach a draw for example. A quite strong agent for the game of backgammon using reinforcement learning techniques is presented at the end of the first section.
 \subsection{The Markov Property and Markov Decision Processes}
-The goal of reinforcement learning is to maximize an agents reward and to find an optimal policy leading to a goal state. But how do environments behave, if an agent chooses an action in a state at a given time? The first thing we have to consider when answering this question is to imagine different environments and think about their characteristics. At this point we have to distinguish between deterministic and stochastic environments. Playing chess is an example for a deterministic environment. There is a specified choice of actions in each state and each of those actions leads to a clearly defined next state. The environment we live in does not necessarily lead to one defined state when taking an action. Instead an action could lead to several states and each of those successor states can occur with a given probability. For example the state "Driving drunk" with the action "Driving in an erratic manner" could lead to the state "Getting stopped by the police", but also to the state "Arriving safe at home". Another important question is if the probability of the successor states depends on the actions taken before, or if just the current state counts for future decisions. This is exactly what the Markov Property demands. For the chess example this question is easy to answer: The agent has to make his decision based on the current position (i.e. the current state) and the environment also does not care about what happened in the past. For other kinds of environment this conditional independence from earlier states cannot be guaranteed in many cases. One thing that might be confusing in this context is the definition of a state itself. The definition of a state takes information about the agents' sensors as input, so a state can depend from sensations made somewhen earlier. The Markov expression can formally be expressed as follows:
+The goal of reinforcement learning is to maximize an agents reward and to find an optimal policy leading to a goal state. But how do environments behave, if an agent chooses an action in a state at a given time? The first thing we have to consider when answering this question is to imagine different environments and think about their characteristics. At this point we have to distinguish between deterministic and stochastic environments. Playing chess is an example for a deterministic environment. There is a specified choice of actions in each state and each of those actions leads to a clearly defined next state. The environment we live in does not necessarily lead to one defined state when taking an action. Instead an action could lead to several states and each of those successor states can occur with a given probability. For example the state "Driving drunk" with the action "Driving in an erratic manner" could lead to the state "Getting stopped by the police", but also to the state "Arriving safe at home". Another important question is if the probability of the successor states depends on the actions taken before, or if just the current state counts for future decisions. This is exactly what the Markov Property demands. For the chess example this question is easy to answer: The agent has to make his decision based on the current position (i.e. the current state) and the environment also does not care about what happened in the past. For other kinds of environment this conditional independence from earlier states cannot be guaranteed in many cases. One thing that might be confusing in this context is the definition of a state itself. The definition of a state takes information about the agents' sensors as input, so a state can depend from sensations made somewhen earlier. The Markov property can formally be expressed as follows:
 \begin{equation}
 \begin{align}
 &Pr\left\{s_{t+1}=s',r_{t+1}=r|s_{t},a_{t},r_{t},s_{t-1},a_{t-1},...,r_{1},s_{0},a_{0}\right\}\\
@@ -204,13 +204,14 @@ Accordingly the expected value of the next reward can be defined as
 \mathcal{R}_{ss'}^{a}=E \left\{r_{t+1}|s_{t}=s,a_{t}=a,s_{t+1}=s' \right\}
 \end{equation}
 \subsection{How to find optimal policies?}
-Gives an overview of algorithms to compute optimal policies.
+This section gives an overview of algorithms to compute optimal policies.
 \subsubsection{Dynamic Programming}
 The most obvious way of finding an optimal policy is using dynamic programming techniques. One way is to start with an arbitrary policy, derive the value function and improve the policy thereafter (policy iteration). Another way is to start with an initial value for all states and adapt this value function iteratively (value iteration).
-\paragraph{Value iteration}
+%\paragraph{Value iteration}
 \paragraph{Policy Iteration}
 An illustration of the principle of policy iteration can be found in the following figure taken from \cite{Sutton98}.
 \begin{figure}
+\label{policyIteration}
 \fbox{
 \begin{equation*}
 \pi_{0}\stackrel{evaluation}{\longrightarrow}V^{\pi_{0}} \stackrel{improvement}{\longrightarrow}{\pi_{1}} \stackrel{evaluation}{\longrightarrow}{V^{\pi_{1}}}... \stackrel{improvement}{\longrightarrow} \pi_{*} \stackrel{evaluation}{\longrightarrow}{V^{\pi_{*}}}
@@ -218,10 +219,10 @@ An illustration of the principle of policy iteration can be found in the followi
 }
 \caption{The principle of policy iteration}
 \end{figure}
-The algorithm in pseudocode is given in \ref{alg1}.
+The algorithm in pseudocode is given in \ref{policyIterationAlgorithm}.
 \begin{algorithm}[tb]
 \caption{Policy Iteration}
-\label{alg1}
+\label{policyIterationAlgorithm}
 \begin{enumerate}
 \item \textbf{Initialization}
 \begin{algorithmic}
@@ -255,7 +256,7 @@ The algorithm in pseudocode is given in \ref{alg1}.
 \end{algorithmic}
 \end{enumerate}
 \end{algorithm}
-The example in figure \ref{vla} underlines how the presented algorithm works. The task of the agent is to get from its starting state (the green square) to the goal (the red square) by moving up, down, left and right. The agent only receives a reward if the goal state is reached (+100), otherwise it does not gain anything (0). The initial policy is deterministic and seems to be quite stupid, but according to the algorithm the agent improves this policy quite fast. The discount factor $\gamma$ is set to $0.9$.
+The example shown in the figures \ref{firstPolicyFigure}-\ref{lastPolicyFigure} underlines how the presented algorithm works. The task of the agent is to get from its starting state (the green square) to the goal (the red square) by moving up, down, left and right. The agent only receives a reward if the goal state is reached (+100), otherwise it does not gain anything (0). The initial policy is deterministic and seems to be quite stupid, but according to the algorithm the agent improves this policy quite fast. The discount factor $\gamma$ is set to $0.9$.
 \begin{figure}[tb]
 \begin{minipage}[t]{0.475 \textwidth}
 \begin{center}
@@ -273,6 +274,7 @@ The example in figure \ref{vla} underlines how the presented algorithm works. Th
             \draw [->] (f.west) to node[above] {\tiny 0} (e.east);	
   \end{tikzpicture}
 \caption{Initial situation of the grid world with rewards for the actions}
+\label{firstPolicyFigure}
 \end{center}
 \end{minipage}
 \begin{minipage}[t]{0.475 \textwidth}
@@ -345,12 +347,13 @@ The example in figure \ref{vla} underlines how the presented algorithm works. Th
             \draw [->] (f.north) -- (c.south);	
   \end{tikzpicture}
 \caption{algorithm terminates after final value update}
+\label{lastPolicyFigure}
 \end{center}
 \end{minipage}
 \end{figure}
 \subsubsection{Monte Carlo Methods}
 The previously discussed dynamic programming methods had the clear disadvantage that they required a model of the dynamics of the environments, i.e. that the transition probabilities of each state-action pair had to be known in advance. Monte Carlo methods do not need this kind of knowledge. Instead they learn the value function of a state by computing the average return after the occurrence of a state generating a large number of episodes. If the number of generated episodes is high enough, the computed state value or state-action value will converge to the real one. Algorithm \ref{monteCarlo} shows a simple way of computing an optimal policy by generating an episode first and adapting the state-action value and the policy afterwards.\\
-One important fact about Monte Carlo algorithms is that they do not make use of bootstrapping, i.e. they do not update the value of a state based on the values of successor states (also known as bootstrapping), but they compute the accumulated reward for each episode after the first occurrence of the state (or the state-action pair). This also makes them less "vulnerable" against environments that do not fulfill the Markov property.
+One important fact about Monte Carlo algorithms is that they do not make use of bootstrapping, i.e. they do not update the value of a state based on the values of successor states, but they compute the accumulated reward for each episode after the first occurrence of the state (or the state-action pair). This also makes them less "vulnerable" against environments that do not fulfill the Markov property.
 \begin{algorithm}[tb]
 \caption{Monte Carlo Algorithm for finding an optimal policy}
 \label{monteCarlo}
@@ -375,10 +378,10 @@ One important fact about Monte Carlo algorithms is that they do not make use of 
 \subsubsection{Temporal Difference Learning}
 Algorithms that make use of temporal difference learning perform bootstrapping (as dynamic programming methods do), but do not need a model of the environment (a property that also applies to Monte Carlo methods). The term "temporal difference" just means that the value update of a state depends on the value of another state at a different timepoint (namely the successor state). In connection to this kind of learning methods the terms "on policy" and "off policy" are often used. "On policy" means that the policy that is used to generate an episode (the behaviour policy) is the same as the policy that is evaluated and improved (the estimation policy). In "off policy" methods those two policies can be independent. The advantage of this is that the state space could be explored better than in an "on policy" method, because episodes generated by a random policy ensure that not only similar episodes are generated (as it could be the case if a greedy policy is used both for estimation and behaviour control). Today TD-learning algorithms are very often applied for reinforcement learning problems.
 \paragraph{The Q-Learning algorithm}
-The Q-Learning algorithm is an off-policy control algorithm introduced in 1989 by C.J.C.H. Watkins and was quite a breakthrough at this time. It approximates the optimal state-action function $Q^{*}$ independent of the policy being followed. the Q-learning algorithm (in pseudocode) can be found in algorithm \ref{qlearning}. The basic idea is to generate a state-action pair by the behaviour policy and to update the value of the old state-action pair by observing the reward and the value of the highest state-action pair of the folowing state after executing the one generated by the policy. Of course again the discount factor $\gamma$ and the learning rate, denoted by $\alpha$ play a role. As already mentioned, the Q-Learning algorithms plays an important role in reinforcement learning, because it is widely used and part of many applications. One example is the backgammon-playing agent by Tesauro.
+The Q-Learning algorithm is an off-policy control algorithm introduced in 1989 by C.J.C.H. Watkins and was quite a breakthrough at this time. It approximates the optimal state-action function $Q^{*}$ independent of the policy being followed. the Q-learning algorithm (in pseudocode) can be found in algorithm \ref{qlearningAlgorithm}. The basic idea is to generate a state-action pair by the behaviour policy and to update the value of the old state-action pair by observing the reward and the value of the highest state-action pair of the following state after executing the one generated by the policy. Of course again the discount factor $\gamma$ and the learning rate, denoted by $\alpha$ play a role. As already mentioned, the Q-Learning algorithm is crucial for in reinforcement learning and it is widely used and part of many applications. One example is the backgammon-playing agent by Tesauro. As there are many applets on the internet giving an intuitive understanding of this algorithms, a detailed example is omitted at this point.
 \begin{algorithm}[tb]
-\label{qlearning}
 \caption{Q-Learning algorithm}
+\label{qlearningAlgorithm}
 \begin{algorithmic}
 \STATE Initialize $Q(s,a)$ arbitrarily
 \FOR{each episode}
@@ -398,8 +401,7 @@ This algorithm was invented by Rummery and Niranjan in 1994 and is also regarded
 Q(s_{t},a_{t}) \gets Q(s_{t},a_{t})+\alpha(r_{t+1}+\gamma Q(s_{t+1},a_{t+1})-Q(s_{t},a_{t})
 \end{equation}
 The basic idea of this update rule is to start with an inital state, choose an action according to the policy (note that the policy that chooses actions and the policy that is improved are identical), execute this action and receive the reward. Afterwards the best action according to the policy ($a_{t+1}$) is chosen and the Q-value of the old state action pair $Q(s_{t},a_{t})$ is updated. Then the procedure is repeated with the new state ($s_{t+1}$) and the new action ($a_{t+1}$) until a terminal state is reached. The complete algorithm is omitted at this point, but with the update rule as its central component it should not be hard to imagine how it should look like. The name of the algorithm "Sarsa" can be formed from the quintuple ($s_{t},a_{t},r_{t+1},s_{t+1},a_{t+1}$). A pseudocode example can be found in \cite{Sutton98}.
-\paragraph{TD($\lambda$)}
-\subsubsection{Eigibility traces as an improvement of reinforcement learning algorithms}
+\subsubsection{Eligibility traces as an improvement of reinforcement learning algorithms}
 In the introductory part we faced the problem that reaching a first reward may last a very long time. An additional problem occurs when using standard TD algorithms in this scenario: Only one state value (or state-action value) $V(s)_{t}$ ($Q(s,a)_{t}$) is updated based on the successor value $V(s)_{t+1}$ ($Q(s,a)_{t+1}$). During the next episode we are given no information how to behave until we have reached a recently updated state. So it would be nice if the previously visited state values $V(s)_{t-1},V(s)_{t-2},...$ or state-action values ($Q(s,a)_{t-1},Q(s,a)_{t-2},...$) would also be updated with a specified decay factor such that earlier actions are affected less than recent actions. This is exactly what eligibility traces do. In principle they store an additional value $e(s)$ ($e(s,a)$) for each state or each state-action pair that describes how much influence a state has on the whole state sequence followed by the agent. So if a state value is updated, all other values of states visited before are also updated (with the factor $\gamma \lambda$ ($\lambda$ denotes the decay factor and $\gamma$ the already known discount factor)). This technique can be applied to all known TD-learning algorithms. Algorithm \ref{sarsaLambda} shows an extended implementation of SARSA making use of eigibility traces.
 \begin{algorithm}[htbp]
 \caption{SARSA($\lambda$)}
@@ -424,11 +426,25 @@ In the introductory part we faced the problem that reaching a first reward may l
 \UNTIL{maximal number of episodes reached}
 \end{algorithmic}
 \end{algorithm}
-
+Temporal difference learning algorithms using a parameter $\lambda$ for eligibility traces are often abbreviated as TD($\lambda$). Figure \ref{backupDiagram} shows a backup diagram of TD($\lambda$). There are two special cases: If $\lambda=0$ then the scenario is equal to one-step TD methods (like discussed before). If $\lambda=1$, then the algorithm turns to a Monte-Carlo algorithm, because the value of a state depends on the whole set of successor states until the final state. But how to choose the parameter $\lambda$ appropriately? There is no clear answer to this question, but in tasks with long delayed rewards it makes sense to use quite a high value in order to accelerate convergence. Nevertheless the computational effort of eligibility traces is higher than using one-step prediction methods. 
+\begin{figure}[htbp]
+\center
+\includegraphics[clip,keepaspectratio,scale=0.5]{pics/backupDiagram.png}
+\caption{A backup diagram of TD($\lambda$) (taken from \cite{Sutton98})}
+\label{backupDiagram}
+\end{figure}
 \subsection{Applications of reinforcement learning}
-Gives an overview of some interesting applications of reinforcement learning. Perhaps some other interesting stuff could be added here.
-\subsubsection{TD-Gammon}
-
+The idea of learning by interacting with the environment and receiving feedback is very intuitive and so there are also many practical applications of reinforcement learning. In order to give a brief idea, two interesting domains will be presented in this section. Some other interesting stuff can be found on the homepage of the annual reinforcement learning contest (\cite{learningContest}).
+\paragraph{TD-Gammon}
+Todo
+\paragraph{Elevator dispatching}
+Todo
+%\begin{figure}[htbp]
+%\label{elevatorImage}
+%\center
+%\includegraphics[clip,keepaspectratio,scale=0.5]{pics/elevator.png}
+%\caption{An overview of the elevator domain}
+%\end{figure}
 \section{Multi-agent reinforcement learning}
 As we have seen in the previous section, the term reinforcement learning is strongly related to Markov decision processes. Unfortunately the underlying mathematical framework for MDPs only supports environments with one agent. But how to apply the algorithms for MDPs to multiagent environments? Littman's paper (\cite{Littman94}) on multi-agent reinforcement learning addresses this problem and presents a variation of the Q-Learning algorithm, called "Minimax Q-Learning" based on Markov games.
 \subsection{The framework of Markov Games}
@@ -462,10 +478,11 @@ Q(s,a,o)=R(s,a,o)+\gamma \sum_{s'}{T(s,a,o,s')V(s')}
 \end{equation}
 Those equations look very similar to the equations for MDPs with the min and max operators and the opponent action as third tuple element as the only differences. The value function of a state $s$ can be computed by solving a so called "Matrix game" (a markov game with just one state and a matrix of rewards such as rock-paper-scissors) using linear programming techniques. Another way of getting optimal Q-values and therefore an optimal policy is transforming the Q-Learning algorithm mentioned in the first section of this paper to a similar algorithm for Markov games. The only change that has to be made to get this new algorithm is replacing the max operator in the update step of the Q-Learning algorithm with a minimax operator.
 \subsection{The Minimax-Q learning algorithm}
-The algorithm defined in Michael Littmans's paper (\cite{Littman94})
+The Minimax-Q learning algorithm (\cite{Littman94}) is a modification of the Q-Learning algorithm and makes it possible to compute an optimal stochastic policy for an agent acting in a two-player Markov game. The important point here is that the resulting policies are no longer deterministic (as in the original algorithm), but stochastic and assume optimal play of the opponent (as this is usual for Minimax). The update function is identical to the Q-Learning case, except the fact that the state-value function $Q(s,a)$ is extended to $(Q(s,a,o)$, also considering the opponent's action $o$. The probabilities for taking an action in each state are computed using linear programming and maximize the own reward assuming the opponent tries to minimize the $Q(s,a',o')$ value. 
 
 \begin{algorithm}[tb]
 \caption{The Minimax-Q algorithm (adapted from \cite{Littman94})}
+\label{minimaxQ}
 \begin{enumerate}
 \item \textbf{Initialization}
 \begin{algorithmic}
@@ -592,7 +609,7 @@ In the third part of the experiment, the agents had to play against a challenger
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 \label{sec:relatedwork}
-
+Since reinforcement learning has been a topic of interest in artificial intelligence research for quite a long time, there is lots of information to be found in books, papers or on the internet. The most fundamental one which is also available online is the book "Reinforcement Learning- An Introduction" (\cite{Sutton98}) written by Sutton and Barto. It explains the basics of reinforcement learning illustrated by intuitive examples. The thesis by Irene Markelic gives even a more intuitive understanding of the topic with less theoretical background. She applied the SARSA($\lambda$) algorithm to a robot soccer task and also explained the principles of reinforcement learning. Littman's paper (\cite{Littman94}) extends the single agent scenario to a multi-agent one, limiting the world to two agents. Nevertheless important multi-agent phenomena such as cooperation are also not considered there.
 
 
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -606,10 +623,11 @@ In the third part of the experiment, the agents had to play against a challenger
 %___________________ ABSCHNITT Ausblick __________________________
 \section{Conclusion and Outlook}
 \label{sec:conclusion_outlook}
+This paper gave an overview of reinforcement learning in general seperating it from other machine learning approaches. We saw that reinforcement learning is closely related to solving Markov Decision Processes (MDPs) and presented several methods for this task with different characteristics. Dynamic programming methods need full world knowledge, that means they have to know the state set and the tranistion probabilities of the world before. With this information methods like policy iteration can be used. For this purpose an initial policy is chosen which is evaluated by computing the value function of each state according to the policy. After that the policy is improved by choosing the action that leads to the state with the highest value function. Those two steps (policy evaluation and improvement) are iterated until the policy does not change any more.\\
+Monte Carlo methods do not require full world knowledge and learn by episodes. At first a random episode (a state sequence from the initial state to the goal state) is computed and the rewards that occured after visiting a state are stored in a table. The value of the state is computed as the average of the accumulated rewards after visiting this state. So there is no update of the value function within episodes, only after completing an episode. Furthermore the value function is not computed based on successor states, i.e. no bootstrapping is performed.\\
+The next important class of algorithms are temporal difference learning algorithms that do bootstrap but do not require a model of the environment. They make their value updates during an episode based on other estimates. Often so called eligibility traces are used here to "transfer" the knowledge gained by a reward also to the states visited during the timesteps before. Those approaches have to be separated into on-policy and off-policy methods. On-policy methods like SARSA use the same evaluation and control policy, whereas those policies can be different in off-policy methods like Q-Learning. TD-algorithms are the most widely used reinforcement learning algorithms today.\\
+Because the framework of MDPs is not applicable to multi-agent tasks, the framework of Markov Games was used to be able to cope with this tasks. Here only a two player environment of soccer-playing agents was considered in order to simplify the mathematics. In this context a new Minimax-Q learning algorithm was developed that is identical to the "standard" Q-learning algorithm expect of replacing the max operator with a minimax operator and considering actions taken by the opponent. An important point here is that Q-Learning learns deterministic policies, whereas Minimax-Q learns stochastic policies which explains the outcome of the games against the challenger opponent. Furthermore it became obvious that the Minimax-Q algorithm did not perform that well, because it assumes optimal play of the opponent. Of course, this could also be an advantage when playing against an opponent that pretends to be a bad player and tries to force the agent to learn a bad policy in order to exploit it afterwards. Q-Learning certainly would lose against such an opponent, because it always adapts its play to the opponent's moves, but identifying those kind of agents to improve the Q-Learning performance could be an interesting topic for future research.
 
-Conclude with a summary and give an outlook on future stuff.
-
-\clearpage
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Bibliography}
 %\label{sec:biblio}
