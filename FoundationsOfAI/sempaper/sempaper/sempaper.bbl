@@ -8,6 +8,19 @@ Sachiyo Arai, Katia Sycara, and Terry~R. Payne.
 \newblock In {\em In Proceedings of the Fourth International Conference on
   MultiAgent Systems}, pages 359--360, 2000.
 
+\bibitem[BBD06]{survey1}
+L.~Bu\c{s}oniu, R.~Babu\v{s}ka, and B.~{De Schutter}.
+\newblock Multi-agent reinforcement learning: A survey.
+\newblock In {\em Proceedings of the 9th International Conference on Control,
+  Automation, Robotics and Vision (ICARCV 2006)}, pages 527--532, Singapore,
+  December 2006.
+
+\bibitem[BBDS08]{BusBab:survey2}
+L.~Bu{\c{s}}oniu, R.~Babu{\v{s}}ka, and B.~{D}e Schutter.
+\newblock A comprehensive survey of multi-agent reinforcement learning.
+\newblock {\em IEEE Transactions on Systems, Man, and Cybernetics, Part C:
+  Applications and Reviews}, 38(2):156--172, March 2008.
+
 \bibitem[BSW90]{Barto90learningand}
 Andrew~G. Barto, R.~S. Sutton, and C.~J. C.~H. Watkins.
 \newblock Learning and sequential decision making.
@@ -24,6 +37,9 @@ Robert~H. Crites and Andrew~G. Barto.
 Ronald~A. Howard.
 \newblock {\em Dynamic Programming and Markov Processes}.
 \newblock {The MIT Press}, Cambridge, Massachusetts, 1960.
+
+\bibitem[lea]{learningContest}
+http://2009.rl-competition.org.
 
 \bibitem[Lit94]{Littman94}
 Michael~L. Littman.
@@ -74,7 +90,7 @@ Karl Tuyls, Tom Croonenborghs, Jan Ramon, Robby Goetschalckx, and Maurice
 \newblock In {\em Proceedings of the First International Workshop on Learning
   and Adaptation in Multi Agent Systems}, pages 123--132, 2005.
 
-\bibitem[Tes92]{Tesauro92practicalissues}
+\bibitem[Tes92]{Tesauro92}
 Gerald Tesauro.
 \newblock Practical issues in temporal difference learning.
 \newblock In {\em Machine Learning}, pages 257--277, 1992.

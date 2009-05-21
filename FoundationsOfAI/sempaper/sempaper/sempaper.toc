@@ -1,36 +1,34 @@
 \select@language {english}
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}
-\contentsline {section}{\numberline {2}Reinforcement learning in general}{2}{section.2}
+\contentsline {section}{\numberline {2}Foundations of Reinforcement Learning}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}The main idea behind reinforcement learning}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Important problems}{3}{subsection.2.2}
-\contentsline {paragraph}{The control problem}{3}{section*.2}
-\contentsline {paragraph}{Problem of exploration and exploitation}{3}{section*.3}
-\contentsline {paragraph}{The prediction problem}{3}{section*.4}
-\contentsline {paragraph}{Partial observability problem}{3}{section*.5}
-\contentsline {paragraph}{Curse of Dimensionality}{3}{section*.6}
-\contentsline {paragraph}{Credit Structuring Problem}{3}{section*.7}
+\contentsline {paragraph}{Problem of Exploration and Exploitation}{3}{section*.2}
+\contentsline {paragraph}{The prediction and the control problem}{3}{section*.3}
+\contentsline {paragraph}{Partial observability problem}{4}{section*.4}
+\contentsline {paragraph}{Curse of Dimensionality}{4}{section*.5}
+\contentsline {paragraph}{Credit Structuring Problem}{4}{section*.6}
+\contentsline {paragraph}{Non-stationary environments}{4}{section*.7}
 \contentsline {subsection}{\numberline {2.3}Value function and Policies}{4}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Separation from other machine learning approaches}{5}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}The Markov Property and Markov Decision Processes}{6}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}How to find optimal policies?}{7}{subsection.2.6}
-\contentsline {subsubsection}{\numberline {2.6.1}Dynamic Programming}{7}{subsubsection.2.6.1}
-\contentsline {paragraph}{Value iteration}{7}{section*.8}
-\contentsline {paragraph}{Policy Iteration}{7}{section*.9}
+\contentsline {subsubsection}{\numberline {2.3.1}$\epsilon $-greedy policy}{6}{subsubsection.2.3.1}
+\contentsline {subsection}{\numberline {2.4}Separation from other machine learning approaches}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}The Markov Property and Markov Decision Processes}{7}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}How to find optimal policies?}{8}{subsection.2.6}
+\contentsline {subsubsection}{\numberline {2.6.1}Dynamic Programming}{8}{subsubsection.2.6.1}
+\contentsline {paragraph}{Policy Iteration}{8}{section*.8}
 \contentsline {subsubsection}{\numberline {2.6.2}Monte Carlo Methods}{8}{subsubsection.2.6.2}
 \contentsline {subsubsection}{\numberline {2.6.3}Temporal Difference Learning}{9}{subsubsection.2.6.3}
-\contentsline {paragraph}{The Q-Learning algorithm}{9}{section*.10}
-\contentsline {paragraph}{Sarsa}{10}{section*.11}
-\contentsline {paragraph}{TD($\lambda $)}{11}{section*.12}
-\contentsline {subsubsection}{\numberline {2.6.4}Eigibility traces as an improvement of reinforcement learning algorithms}{11}{subsubsection.2.6.4}
-\contentsline {subsection}{\numberline {2.7}Applications of reinforcement learning}{11}{subsection.2.7}
-\contentsline {subsubsection}{\numberline {2.7.1}TD-Gammon}{11}{subsubsection.2.7.1}
-\contentsline {section}{\numberline {3}Multi-agent reinforcement learning}{11}{section.3}
-\contentsline {subsection}{\numberline {3.1}The framework of Markov Games}{11}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}Finding optimal policies in Markov games}{12}{subsubsection.3.1.1}
-\contentsline {subsection}{\numberline {3.2}The Minimax-Q learning algorithm}{13}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Soccer as an application of the Minimax-Q algorithm}{13}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Game description and rules}{13}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Training and Testing}{14}{subsubsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.3}Results}{14}{subsubsection.3.3.3}
-\contentsline {section}{\numberline {4}Related Work}{14}{section.4}
-\contentsline {section}{\numberline {5}Conclusion and Outlook}{14}{section.5}
+\contentsline {paragraph}{The Q-Learning algorithm}{10}{section*.9}
+\contentsline {paragraph}{Sarsa}{11}{section*.10}
+\contentsline {subsubsection}{\numberline {2.6.4}Eligibility traces as an improvement of reinforcement learning algorithms}{12}{subsubsection.2.6.4}
+\contentsline {section}{\numberline {3}Multi-agent reinforcement learning}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}Problems of multi-agent reinforcement learning}{13}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}The framework of Markov Games}{13}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Finding optimal policies in Markov games}{14}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}The Minimax-Q learning algorithm}{15}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Soccer as an application of the Minimax-Q algorithm}{15}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Game description and rules}{15}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Training and Testing}{16}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Results}{17}{subsubsection.3.4.3}
+\contentsline {section}{\numberline {4}Related Work}{18}{section.4}
+\contentsline {section}{\numberline {5}Conclusion and Outlook}{18}{section.5}
