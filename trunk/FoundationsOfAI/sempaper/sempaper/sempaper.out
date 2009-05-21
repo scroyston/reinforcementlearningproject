@@ -1,24 +1,24 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}
-\BOOKMARK [1][-]{section.2}{Reinforcement learning in general}{}
+\BOOKMARK [1][-]{section.2}{Foundations of Reinforcement Learning}{}
 \BOOKMARK [2][-]{subsection.2.1}{The main idea behind reinforcement learning}{section.2}
 \BOOKMARK [2][-]{subsection.2.2}{Important problems}{section.2}
 \BOOKMARK [2][-]{subsection.2.3}{Value function and Policies}{section.2}
+\BOOKMARK [3][-]{subsubsection.2.3.1}{-greedy policy}{subsection.2.3}
 \BOOKMARK [2][-]{subsection.2.4}{Separation from other machine learning approaches}{section.2}
 \BOOKMARK [2][-]{subsection.2.5}{The Markov Property and Markov Decision Processes}{section.2}
 \BOOKMARK [2][-]{subsection.2.6}{How to find optimal policies?}{section.2}
 \BOOKMARK [3][-]{subsubsection.2.6.1}{Dynamic Programming}{subsection.2.6}
 \BOOKMARK [3][-]{subsubsection.2.6.2}{Monte Carlo Methods}{subsection.2.6}
 \BOOKMARK [3][-]{subsubsection.2.6.3}{Temporal Difference Learning}{subsection.2.6}
-\BOOKMARK [3][-]{subsubsection.2.6.4}{Eigibility traces as an improvement of reinforcement learning algorithms}{subsection.2.6}
-\BOOKMARK [2][-]{subsection.2.7}{Applications of reinforcement learning}{section.2}
-\BOOKMARK [3][-]{subsubsection.2.7.1}{TD-Gammon}{subsection.2.7}
+\BOOKMARK [3][-]{subsubsection.2.6.4}{Eligibility traces as an improvement of reinforcement learning algorithms}{subsection.2.6}
 \BOOKMARK [1][-]{section.3}{Multi-agent reinforcement learning}{}
-\BOOKMARK [2][-]{subsection.3.1}{The framework of Markov Games}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Finding optimal policies in Markov games}{subsection.3.1}
-\BOOKMARK [2][-]{subsection.3.2}{The Minimax-Q learning algorithm}{section.3}
-\BOOKMARK [2][-]{subsection.3.3}{Soccer as an application of the Minimax-Q algorithm}{section.3}
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Game description and rules}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Training and Testing}{subsection.3.3}
-\BOOKMARK [3][-]{subsubsection.3.3.3}{Results}{subsection.3.3}
+\BOOKMARK [2][-]{subsection.3.1}{Problems of multi-agent reinforcement learning}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{The framework of Markov Games}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Finding optimal policies in Markov games}{subsection.3.2}
+\BOOKMARK [2][-]{subsection.3.3}{The Minimax-Q learning algorithm}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Soccer as an application of the Minimax-Q algorithm}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Game description and rules}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Training and Testing}{subsection.3.4}
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Results}{subsection.3.4}
 \BOOKMARK [1][-]{section.4}{Related Work}{}
 \BOOKMARK [1][-]{section.5}{Conclusion and Outlook}{}
