@@ -1,4 +1,11 @@
 \beamer@endinputifotherversion {3.07pt}
-\beamer@sectionintoc {1}{IntroSec}{2}{0}{1}
-\beamer@sectionintoc {2}{MainSec}{4}{0}{2}
-\beamer@sectionintoc {3}{LastSec}{6}{0}{3}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Foundations of Reinforcement Learning}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Markov Decision processes}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{Policies}{11}{0}{2}
+\beamer@subsectionintoc {2}{3}{Value- and State-Value-Function}{11}{0}{2}
+\beamer@subsectionintoc {2}{4}{Basic algorithms}{11}{0}{2}
+\beamer@sectionintoc {3}{Multi-Agent Reinforcement Learning}{14}{0}{3}
+\beamer@subsectionintoc {3}{1}{General Problems}{15}{0}{3}
+\beamer@subsectionintoc {3}{2}{Sharing Knowledge}{16}{0}{3}
+\beamer@subsectionintoc {3}{3}{Game-theoretic Approaches}{16}{0}{3}

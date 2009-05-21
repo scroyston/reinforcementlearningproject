@@ -1,18 +1,47 @@
 %%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass{beamer}
 
+
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Mode
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mode<presentation>
 {
-  \usetheme[hideallsubsections]{Aachen}
-%  \usetheme{Luebeck}
+  %\usetheme[hideallsubsections]{Aachen}
+  %\usetheme{Luebeck}
+  \usetheme{Malmoe}
+  \usefonttheme{professionalfonts}
+  \usecolortheme{orchid}
   % oder ...
 
   \setbeamercovered{transparent}
   % oder auch nicht
 }
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Packages
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[latin1]{inputenc}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{xcolor}
+%\usefonttheme[onlymath]{serif}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{listings}
+%\usepackage{psfrag}
+%\usepackage{rotating}
+%\usepackage{xmpmulti}
+%\usepackage{pgfarrows}
+%\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{algorithmic}
+%\usepackage{program}
+%\usepackage[pst-all]{graphicx}
 
 
 %%%%%%%%%%%%%
@@ -27,24 +56,6 @@
   \end{columns}%
 }
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Packages
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[latin1]{inputenc}
-\usefonttheme[onlymath]{serif}
-\usepackage{times}
-\usepackage[T1]{fontenc}
-\usepackage{listings}
-%\usepackage{psfrag}
-%\usepackage{rotating}
-%\usepackage{xmpmulti}
-%\usepackage{pgfarrows}
-%\usepackage{tabularx}
-\usepackage{hyperref}
-%\usepackage{algorithmic}
-\usepackage{program}
-%\usepackage[pst-all]{graphicx}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Macros/Defs
@@ -60,17 +71,16 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Title Information
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[Robotics]{Some Robotics Slides}
+\title[Multi-Agent Reinforcement Learning]{Multi-Agent Reinforcement Learning}
 
-\author[ShortAuthor]{Full Author}
+\author[C.Kalla]{Christian Kalla}
 \institute[RWTH Aachen University]
 { Knowledge-Based Systems Group\\
-  RWTH Aachen University\\
-  {mail@domain.tld}
+  RWTH Aachen University
 }
 
-\date[shortdate] % (optional, sollte der abgekürzte Konferenzname sein)
-{full date/conf name}
+\date[8.6.2009] % (optional, sollte der abgekürzte Konferenzname sein)
+{8.6.2009/Seminar- Foundations of AI}
 
 \subject{Subject}
 
@@ -100,19 +110,102 @@
   \titlepage
 \end{frame}
 
-\section{IntroSec}
+\section{Introduction}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-  \frametitle{The Frametitle}
+  \frametitle{The Idea of Reinforcement Learning}
   \begin{itemize}
-  \item an item
-  \item another item
-  \item ...
+  \item learning by interacting with the environment
+  \item taking actions and receiving rewards
+  \item trying to maximize long-term reward
+  \item mathematical description: \textcolor{red}{Markov Decision Process}
   \end{itemize}
 \end{frame}
+\begin{frame}
+\frametitle{Comparison to other Machine Learning Approaches}
+\begin{itemize}
+\item \textbf{Supervised Learning}
+\pause
+\begin{itemize}
+\item given correct input-output pairs
+\item correct classification of data given $\rightarrow$ \textcolor{red}{"teacher"}
+\item example: digit recognition
+\end{itemize}
+\pause
+\item \textbf{Unsupervised Learning}
+\begin{itemize}
+\item just "raw data" without labeling given
+\item no "teacher"
+\item example: clustering methods (k-means,...)
+\end{itemize}
+\pause
+\item \textbf{Reinforcement Learning}
+\begin{itemize}
+\item learning by interacting with the environment
+\item "natural" approach (related to human learning)
+\item feedback from environment in terms of rewards
+\item goal: maximize long-term reward
+\end{itemize}
+\end{itemize}
+\end{frame}         
 
-\section{MainSec}
+\section{Foundations of Reinforcement Learning}
+\subsection{Markov Decision processes}
+\begin{frame}
+\frametitle{The Markov Property}
+\begin{block}{Markov Property}
+\begin{equation*}
+\begin{align}
+&Pr\left\{s_{t+1}=s',r_{t+1}=r| s_{t},a_{t},r_{t},s_{t-1},a_{t-1},...,r_{1},s_{0},a_{0} \right\}\\
+=&Pr\left\{s_{t+1}=s',r_{t+1}=r| s_{t},a_{t} \right\}   
+\end{align}
+\end{equation}
+\end{block}
+The probability distribution of the next state only depends on the previous state and not on all the states visited before
+\end{frame}
+\begin{frame}
+\frametitle{Markov Decision Process(MDP)}
+\begin{block}{Components of an MDP}
+\begin{itemize}
+\item a set of states $\mathcal{S}$
+\item a set of actions $\mathcal{A}$
+\item a set of rewards $\mathfrak{R}$
+\item a transition function $T:\mathcal{S}\times \mathcal{A}\rightarrow PD(\mathcal{S})$ where $PD(\mathcal{S})$ denotes the set of probability distribution over $\mathcal{S}$
+\item a reward function $R:\mathcal{S} \times \mathcal{A} \rightarrow \mathfrak{R}$
+\end{itemize}
+\end{block}
+\begin{alertblock}{Goal:Maximize expected sum of discounted future rewards:}
+\begin{equation}
+E \left\{\sum_{j=0}^{\infty}{\gamma^{j}r_{t+j}} \right\}
+\end{equation}
+\end{alertblock}
+\end{frame}
+\subsection{Policies}
+\subsection{Value- and State-Value-Function}
+\subsection{Basic algorithms}
+\begin{frame}
+\frametitle{Categorization of Algorithms}
+\end{frame}
+\begin{frame}
+\frametitle{The Q-Learning Algorithm}
+\begin{block}{Q-Learning Algorithm}
+\begin{algorithm}
+\begin{algorithmic}
+\STATE Initialize $Q(s,a)$ arbitrarily
+\FOR{each episode}
+\STATE Initialize $s$
+\REPEAT
+\STATE Choose a from s using policy derived from $Q$
+\STATE Take action a and observe $a,s'$
+\STATE $Q(s,a) \gets Q(s,a)+\alpha(r+\gamma \max_{a'} Q(s',a') - Q(s,a))$
+\STATE $s \gets s'$
+\UNTIL{s is terminal}
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+\end{block}
+\end{frame}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -130,19 +223,31 @@
     \begin{column}{0.6\textwidth}
       2nd column
       \begin{center}
-        \includegraphics[width=0.3\textwidth]{pics/KBSG_Logo}
       \end{center}
     \end{column}
   \end{columns}
 \end{frame}
  
-\section{LastSec}
+\section{Multi-Agent Reinforcement Learning}
+\subsection{General Problems}
+\begin{frame}
+\frametitle{Overview of MARL algorithms}
+\includegraphics[viewport=312 416 562 615,keepaspectratio,clip,page=1]{../../survey1.pdf}
+\end{frame}
+\subsection{Sharing Knowledge}
+\subsection{Game-theoretic Approaches}
+\begin{frame}
+\frametitle{A Robot Soccer Scenario}
+\end{frame}
+\begin{frame}
+\frametitle{The Minimax-Q Learning Algorithm}
+\end{frame}
+
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
   \frametitle{Last Slide}
-  \includegraphics[width=0.3\textwidth]{pics/allemaniacs_logo}
-  \href{run:./video.sh}{\beamergotobutton{play video}}  
+  \href{http://www.cs.ubc.ca/~poole/demos/rl/q.html}{\beamergotobutton{Q Learning applet}}  
 \end{frame}
 
 

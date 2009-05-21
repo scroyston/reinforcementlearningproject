@@ -1,3 +1,10 @@
-\BOOKMARK [2][]{Outline0.1}{IntroSec}{}
-\BOOKMARK [2][]{Outline0.2}{MainSec}{}
-\BOOKMARK [2][]{Outline0.3}{LastSec}{}
+\BOOKMARK [2][]{Outline0.1}{Introduction}{}
+\BOOKMARK [2][]{Outline0.2}{Foundations of Reinforcement Learning}{}
+\BOOKMARK [3][]{Outline0.2.1.9}{Markov Decision processes}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.2.11}{Policies}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.3.11}{Value- and State-Value-Function}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.4.11}{Basic algorithms}{Outline0.2}
+\BOOKMARK [2][]{Outline0.3}{Multi-Agent Reinforcement Learning}{}
+\BOOKMARK [3][]{Outline0.3.1.15}{General Problems}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.2.16}{Sharing Knowledge}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.3.16}{Game-theoretic Approaches}{Outline0.3}
