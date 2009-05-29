@@ -154,7 +154,7 @@
 \begin{frame}
 \frametitle{The Idea of Reinforcement Learning}
 \begin{tikzpicture}[overlay]
-\node[normalnode3] (agent) at (3,0) {Agent};
+\node[normalnode3] (agent) at (3,0)  {Agent};
 \node[normalnode3] [right of=agent] (environment) {Environment};
 \path<2-3>[->] (agent.south) edge[very thick,bend right] node[below]{action} (environment.south);
 \path<3-3>[->] (environment.north) edge[very thick,bend right,red] node[above]{reward, new state} (agent.north);
@@ -267,7 +267,7 @@ In order to find an optimal way from the state to the goal we have to do the fol
 \frametitle{Policy- A Formal Definition}
 \begin{definition}[Policy]
 Let $S$ be a set of states and $A$ be a set of actions an agent can choose in its environment.\\
-A mapping $\pi:S \rightarrow A \ \forall s \in S$ is called a policy .
+A mapping $\pi:S \rightarrow PD(A) \ \forall s \in S$ is called a policy . $PD(A)$ denotes a probability distribution of the action set.
 \end{definition}
 \end{frame}
 \begin{frame}
@@ -277,7 +277,7 @@ A policy $\pi^{*} \in \Pi$ that maximizes the quantity
 \begin{equation*}
 R=r_{0}+r_{1}+...+r_{n}
 \end{equation}
-for Markov decesion processes with a terminal state or the quantity
+for Markov decision processes with a terminal state or the quantity
 \begin{equation*}
 R=\sum_{t}{\gamma^{t}r_{t}}
 \end{equation}
@@ -329,7 +329,7 @@ The function
 \begin{equation*}
 V^{\pi}(s)=E_{\pi}\left\{R_{t}|s_{t}=s \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s  \right\}
 \end{equation}
-is called the state-value function for policy $\pi$. $E_{\pi}{}$ =expected value assuming the agent follows the policy $\pi$ with an arbitrary time step $t$.
+is called the state-value function for policy $\pi$. $E_{\pi}{}$ is the expected value assuming the agent follows the policy $\pi$ with an arbitrary time step $t$.
 \end{definition}
 \begin{definition}[Optimal state-value function]
 The function
@@ -343,6 +343,7 @@ is called optimal state-value function.
 \frametitle{Action-Value Function}
 \begin{definition}[Action-value function]
 The function
+\small
 \begin{equation*}
 Q^{\pi}(s,a)=E_{\pi}\left\{R_{t}|s_{t}=s, a_{t}=a \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s, a_{t}=a  \right\}
 \end{equation}
@@ -368,7 +369,7 @@ is called optimal action-value funciton.
 \end{block}
 \begin{block}{Monte Carlo Methods}
 \begin{itemize}
-\item do not require full world knowledge
+\item do not require full world knowledge ($\rightarrow$ \textcolor{red}{model free})
 \item perform an episode and update state values and policy \textcolor{red}{afterwards}
 \end{itemize}
 \end{block}
@@ -401,47 +402,13 @@ is called optimal action-value funciton.
 \end{itemize}
 \end{frame}
 \begin{frame}
-\frametitle{}
-\tiny
-\begin{block}{Policy Iteration Algorithm}
-\begin{enumerate}
-\item \textbf{Initialization}
-\begin{algorithmic}
-\STATE $V(s) \in \mathfrak{R}$ and $\pi(s) \in \mathcal{A}$ arbitrarily for all $s \in \mathcal{S}$
-\end{algorithmic}
-\item \textbf{Policy Evaluation}
-\begin{algorithmic}
-\REPEAT
-\STATE $\delta \gets 0$
-\FOR {$s \in \mathcal{S}$}
-\STATE $v \gets V(s)$
-\STATE $V(s) \gets \sum_{s'}{\mathcal{P}_{ss'}^{\pi(s)}(\mathcal{R}_{ss'}^{\pi(s)}+\gamma V(s'))}$
-\STATE $\delta \gets \max(\delta,|v-V(s)|)$
-\ENDFOR
-\UNTIL{$\delta < \theta$ (a small threshold to be reached)}
-\end{algorithmic}
-\item \textbf{Policy Improvement}
-\begin{algorithmic}
-\STATE $policy-stable \gets true$
-\FOR {$s \in \mathcal{S}$}
-\STATE $b \gets \pi(s)$
-\STATE $\pi(s) \gets \arg\max_{a}{ \sum_{s'}{\mathcal{P}_{ss'}^{a}(\mathcal{R}_{ss'}^{a}+\gamma V(s'))}}$
-\IF{$b \neq \pi(s)$}
-\STATE $policy-stable \gets false$
-\ENDIF
-\ENDFOR
-\IF{$policy-stable$}
-\STATE STOP
-\ELSE GOTO 2.
-\ENDIF
-\end{algorithmic}
-\end{enumerate}
-\end{block}
-\end{frame}
-\begin{frame}
 \frametitle{Policy Iteration- An Example}
+\framesubtitle<1>{Initial Situation with initial policy}
+\framesubtitle<2>{Situation after first value update}
+\framesubtitle<3>{Situation after policy has been adapted}
+\framesubtitle<4>{Situation after final value update}
   \begin{tikzpicture}[overlay,scale=2.0,transform shape]
-            \node[start] (a) at (2,0)  {0};
+            \node[start] at (1.5,0) (a) {0};
             \node<1-1>[normalnode][right of=a]  (b) {0};
             \node[goal][right of=b]  (c) {};
             \node[normalnode][below of=a]  (d) {0};
@@ -455,7 +422,7 @@ is called optimal action-value funciton.
 
 
             \node<2-4>[normalnode][right of=a]  (b) {100};
-            \node<2-3>[start] (a) at (2,0)  {72,9};
+            \node<2-3>[start] at (1.5,0) (a) {72,9};
             \node<2-4>[normalnode][below of=a]  (d) {81};
             \node<2-4>[normalnode][right of=d]  (e) {90};
             \node<2-3>[normalnode][right of=e] (f) {81};
@@ -466,7 +433,7 @@ is called optimal action-value funciton.
             \draw<3-3> [->] (b.east) -- (c.west);
             \draw<3-3> [->] (f.north) -- (c.south);	
             
-            \node<4-4>[start] (a) at (2,0)  {81};
+            \node<4-4>[start] at (1.5,0) (a)  {81};
             \node<4-4>[normalnode][right of=e] (f) {100};
             \draw<4-4> [->] (a.east) -- (b.west);
             \draw<4-4> [->] (d.east) -- (e.west);
@@ -494,11 +461,11 @@ is called optimal action-value funciton.
 \FOR{each episode}
 \STATE Initialize $s$
 \REPEAT
-\STATE Choose a from s using policy derived from $Q$
-\STATE Take action a and observe $a,s'$
+\STATE Choose $a$ from $\mathcal{A}$ using policy derived from $Q$
+\STATE Take action $a$ and observe $a,s'$
 \STATE $Q(s,a) \gets Q(s,a)+\alpha(r+\gamma \max_{a'} Q(s',a') - Q(s,a))$
 \STATE $s \gets s'$
-\UNTIL{s is terminal}
+\UNTIL{$s$ is terminal}
 \ENDFOR
 \end{algorithmic}
 \end{block}
@@ -507,11 +474,15 @@ is called optimal action-value funciton.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Multi-Agent Reinforcement Learning}
+\begin{frame}<beamer>
+\frametitle{Outline}
+\tableofcontents[currentsection,currentsubsection]
+\end{frame}
 \subsection{Overview and General Problems}
 \begin{frame}
 \frametitle{Problems when advancing from RL to MARL}
 \begin{itemize}
-\item Markov Decision Processes as framework no longer sufficient $\rightarrow$ Markov Games as a new framework
+\item Markov Decision Processes as framework no longer sufficient in most cases $\rightarrow$ Markov Games as a new framework
 \item Different relations between agents have to be considered
 \begin{itemize}
 \item Fully cooperative (robot swarm exploring the world, soccer players of one team)
@@ -564,6 +535,25 @@ E\left\{\sum_{j=0}^{\infty}{\gamma^{j} r_{i,t+j}}\right\}
 \end{equation}
 \end{block}
 \end{frame}
+\begin{frame}
+\frametitle{Classification of MARL tasks}
+\begin{itemize}
+\item \textcolor{red}{Fully cooperative tasks}: All agents have the same goal\\
+Example: Explore the world most efficiently
+\item \textcolor{red}{Fully competitive tasks}: Agents have an opposite goal (try to minimize the reward of the other agent)\\
+Example: Try to win against the agents of the other team in robot soccer
+\item \textcolor{red}{Mixed tasks}: Agents cooperate, but also act in an egoistic way\\
+Example: Two robots cleaning a big and a small floor. The joint task is to clean the whole building, but each robot wants to clean the smaller floor in order to have less work
+\begin{itemize}
+\item \textcolor{red}{agent independent}:
+Common structure based on Q-Learning is shared between the agents
+\item \textcolor{red}{agent tracking}:
+Decision is based on a model of the other agents
+\item \textcolor{red}{agent aware}:
+Agent tries to adapt to the other agents
+\end{itemize}
+\end{itemize}
+\end{frame}
 \subsection{Cooperative Tasks}
 \begin{frame}
 \frametitle{Fully cooperative Tasks}
@@ -578,6 +568,7 @@ h_{i}^{*}(s)= arg \max_{a_{i}}{\max_{a_{1},...,a_{k}}{Q^{*}(s,a_{1},...,a_{k})}}
 \end{equation}
 \end{itemize}
 \item Seems nice, but what happens if there are more than one maximizing action tuples? $\rightarrow$ Coordination Problem
+\item Additional problem: Q tables may become very large (all combinations of actions of the agents have to be considered)
 \end{itemize}
 \end{frame}
 \begin{frame}
@@ -607,12 +598,9 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \begin{itemize}
 \item \textbf{Initialization}
 \begin{algorithmic}
-\STATE $\forall s \in \mathcal{S},a \in \mathcal{A}, o \in \mathcal{O}$
-\STATE $Q(s,a,o) \gets 1$
-\STATE $\forall s \in \mathcal{S}$
-\STATE $V(s) \gets 1$
-\STATE $\forall s \in \mathcal{S}, a \in \mathcal{A}$
-\STATE $\pi(s,a) \gets 1/|A|$
+\STATE $\forall s \in \mathcal{S},a \in \mathcal{A}, o \in \mathcal{O} \ Q(s,a,o) \gets 1$
+\STATE $\forall s \in \mathcal{S} \ V(s) \gets 1$
+\STATE $\forall s \in \mathcal{S}, a \in \mathcal{A} \ \pi(s,a) \gets 1/|A|$
 \STATE $\alpha \gets 1.0$
 \end{algorithmic}
 \end{itemize}
@@ -624,7 +612,7 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \begin{itemize}
 \item \textbf{Choice of the action}
 \begin{algorithmic}
-\STATE return a random action with probability $explor$, otherwise:
+\STATE return a random action with probability $explore$, otherwise:
 \IF{current state is s}
 \STATE return an action a with probability $\pi(s,a)$
 \ENDIF
@@ -644,7 +632,7 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \begin{frame}
 \frametitle{A Robot Soccer Scenario}
 \centering
-\begin{tikzpicture}[scale=1.5,transform shape]
+\begin{tikzpicture}[scale=0.8,transform shape]
 \node[dummy] (01);
 \foreach \i/\j in {0/1,1/2,2/3,3/4}
 {
@@ -669,10 +657,22 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \draw[->] (agentA) -- (24.east);
 \draw[->] (agentA) -- (24.south);
 \end{tikzpicture}
+\begin{itemize}
+\item random ball possession at the beginning
+\item "blocker" gets ball possession
+\item goal: "walk" into enemy's goal
+\item four policies were trained: MM, QR, QQ, MR (Minimax-Q against itself, Q-Learning against random,...)
+\item challenger opponent: opponent trained against each of those policies
+\end{itemize}
 \end{frame}
 \begin{frame}
 \frametitle{Robot-soccer Results}
 \includegraphics[viewport=115 602 523 699,keepaspectratio,clip,page=6, scale=0.8]{../../ml94-final.pdf}
+\begin{itemize}
+\item Minimax-Q is insensitve against the opponent against which it was trained
+\item Minimax assumption not good against non-optimal opponents
+\item Minimax-Q uses stochastic policies, Q-Learning only deterministic (reason for always losing against challenger)
+\end{itemize}
 \end{frame}
 \begin{frame}
 \frametitle{The Minimax Principle}
@@ -701,6 +701,15 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \end{itemize}
 \end{frame}
 \begin{frame}
+\frametitle{The Equilibrium Selection Problem}
+\begin{figure}
+\begin{center}
+\includegraphics[viewport=58 640 277 729,keepaspectratio,clip,page=11, scale=1.5]{../../survey2.pdf}
+\caption{Two cleaning robots negotiating to clean the two wings. Of course, both want to clean the smaller floor, because it is less effort}
+\end{center}
+\end{figure}
+\end{frame}
+\begin{frame}
 \frametitle{Finding Equilibria}
 \begin{itemize}
 \item assume a stage game $Q_{.,t}(s,\cdot)$ (i.e. the game situation in state $a$, given all the agents Q-Functions at time $t$)
@@ -716,15 +725,6 @@ Q_{i,t+1}(s_{t},a_{1,t},...a_{k,t})=&Q_{i,t}(s,a_{1,t},...a_{k,t})\\
 \item \textcolor{red}{$solve_{i}$} returns the equilibrium strategy for agent $i$ (e.g. choose action $a_{1}$ with probability $p(a_{1})$, action $a_{2}$ with probability $p(a_{2})$,...)
 \item \textcolor{red}{$eval_{i}$} returns the agent's expected return given the equilibrium
 \end{itemize}
-\end{frame}
-\begin{frame}
-\frametitle{The Equilibrium Selection Problem}
-\begin{figure}
-\begin{center}
-\includegraphics[viewport=58 640 277 729,keepaspectratio,clip,page=11, scale=1.5]{../../survey2.pdf}
-\caption{Two cleaning robots negotiating to clean the two wings. Of course, both want to clean the smaller floor, because it is less effort}
-\end{center}
-\end{figure}
 \end{frame}
 \subsection{MARL- An Overview}
 \begin{frame}
