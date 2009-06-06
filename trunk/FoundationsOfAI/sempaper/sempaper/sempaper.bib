@@ -118,14 +118,6 @@ keywords = "Markov games",
 keywords = "Q-learning",
 keywords = "Nash equilibria"
 }
-@INPROCEEDINGS{Crites96improvingelevator,
-    author = {Robert H. Crites and Andrew G. Barto},
-    title = {Improving elevator performance using reinforcement learning},
-    booktitle = {Advances in Neural Information Processing Systems 8},
-    year = {1996},
-    pages = {1017--1023},
-    publisher = {MIT Press}
-}
 @MISC{learningContest,
 title="http://2009.rl-competition.org",
 url="http://2009.rl-competition.org"
@@ -150,4 +142,205 @@ url="http://2009.rl-competition.org"
    year={2008},
    doi={10.1109/TSMCC.2007.913919}
 }
+@inproceedings{distributedq,
+  author    = {Martin Lauer and
+               Martin A. Riedmiller},
+  title     = {An Algorithm for Distributed Reinforcement Learning in Cooperative
+               Multi-Agent Systems},
+  booktitle = {ICML},
+  year      = {2000},
+  pages     = {535-542},
+  crossref  = {DBLP:conf/icml/2000},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+@Article{nashq,
+  author =	 {Junling Hu and Michael P. Wellman},
+  title =	 {Nash Q-Learning for General-Sum Stochastic Games},
+  journal =	 {Journal of Machine Learning Research},
+  year =	 2003,
+  volume =	 4,
+  pages =	 {1039--1069},
+  abstract =	 {We extend Q-learning to a noncooperative multiagent
+                  context, using the framework of generalsum
+                  stochastic games. A learning agent maintains
+                  Q-functions over joint actions, and performs updates
+                  based on assuming Nash equilibrium behavior over the
+                  current Q-values. This learning protocol provably
+                  converges given certain restrictions on the stage
+                  games (defined by Q-values) that arise during
+                  learning. Experiments with a pair of two-player grid
+                  games suggest that such restrictions on the game
+                  structure are not necessarily required. Stage games
+                  encountered during learning in both grid
+                  environments violate the conditions. However,
+                  learning consistently converges in the first grid
+                  game, which has a unique equilibrium Q-function, but
+                  sometimes fails to converge in the second, which has
+                  three different equilibrium Q-functions. In a
+                  comparison of offline learning performance in both
+                  games, we find agents are more likely to reach a
+                  joint optimal path with Nash Q-learning than with a
+                  single-agent Q-learning method. When at least one
+                  agent adopts Nash Q-learning, the performance of
+                  both agents is better than using single-agent
+                  Q-learning. We have also implemented an online
+                  version of Nash Q-learning that balances exploration
+                  with exploitation, yielding improved performance.},
+  keywords =     {multiagent reinforcement learning},
+  googleid = 	 {GF9Y4c6NGIEJ:scholar.google.com/},
+  url = 	 {http://jmvidal.cse.sc.edu/library/hu03a.pdf},
+  cluster = 	 {9302340950017203992}
+}
+@INPROCEEDINGS{singletomulti,
+    author = {Sandip Sen and Ip Sen and Mahendra Sekaran and John Hale},
+    title = {Learning to Coordinate Without Sharing Information},
+    booktitle = {In Proceedings of the Twelfth National Conference on Artificial Intelligence},
+    year = {1994},
+    pages = {426--431}
+}
+@inproceedings{coordination,
+ author = {Boutilier, Craig},
+ title = {Planning, learning and coordination in multiagent decision processes},
+ booktitle = {TARK '96: Proceedings of the 6th conference on Theoretical aspects of rationality and knowledge},
+ year = {1996},
+ isbn = {1-55860-417-9},
+ pages = {195--210},
+ location = {The Netherlands},
+ publisher = {Morgan Kaufmann Publishers Inc.},
+ address = {San Francisco, CA, USA},
+ }
+ @incollection{opponentModel,
+  Author =      {David Carmel and Shaul Markovitch},
+  Title =       {Opponent Modeling in Multi-agent Systems},
+  Year =        {1996},
+  Booktitle =   {Adaption And Learning In Multi-Agent Systems},
+  Volume =      {1042},
+  Publisher =   {Springer-Verlag},
+  Keywords =    {Opponent Modeling, Multi-Agent Systems, Learning in Games},
+  Editor =      {Gerhard Weiss and Sandip Sen},
+  Secondary-keywords =  {Repeated Games, Learning DFA},
+  Series =      {Lecture Notes in Artificial Intelligence},
+  Url =         {http://www.cs.technion.ac.il/~shaulm/papers/pdf/Carmel-Markovitch-lnai1996.pdf},
+  Abstract =    {Agents that operate in a multi-agent system need an efficient strategy to handle
+             their encounters with other agents involved. Searching for an optimal
+             interactive strategy is a hard problem because it depends mostly on the
+             behavior of the others. In this work, interaction among agents is represented
+             as a repeated two-player game, where the agents' objective is to look for a
+             strategy that maximizes their expected sum of rewards in the game. We assume
+             that agents' strategies can be modeled as finite automata. A model-based
+             approach is presented as a possible method for learning an effective
+             interactive strategy. First, we describe how an agent should find an optimal
+             strategy against a given model. Second, we present a heuristic algorithm that
+             infers a model of the opponent's automaton from its input/output behavior. A
+             set of experiments that show the potential merit of the algorithm is reported
+             as well.}
+}
+@ARTICLE{Mataric97,
+    author = {Maja J. Mataric},
+    title = {Reinforcement Learning in the Multi-Robot Domain},
+    journal = {Autonomous Robots},
+    year = {1997},
+    volume = {4},
+    pages = {73--83}
+}
+@article{singletomulti2,
+ author = {Tuyls, Karl and Hoen, Pieter Jan and Vanschoenwinkel, Bram},
+ title = {An Evolutionary Dynamical Analysis of Multi-Agent Learning in Iterated Games},
+ journal = {Autonomous Agents and Multi-Agent Systems},
+ volume = {12},
+ number = {1},
+ year = {2006},
+ issn = {1387-2532},
+ pages = {115--153},
+ doi = {http://dx.doi.org/10.1007/s10458-005-3783-9},
+ publisher = {Kluwer Academic Publishers},
+ address = {Hingham, MA, USA},
+ }
+ @ARTICLE{wolfphc,
+    author = {Michael Bowling and Manuela Veloso},
+    title = {Multiagent Learning Using a Variable Learning Rate},
+    journal = {Artificial Intelligence},
+    year = {2002},
+    volume = {136},
+    pages = {215--250}
+}
+@inproceedings{nscp,
+ author = {Weinberg, Michael and Rosenschein, Jeffrey S.},
+ title = {Best-Response Multiagent Learning in Non-Stationary Environments},
+ booktitle = {AAMAS '04: Proceedings of the Third International Joint Conference on Autonomous Agents and Multiagent Systems},
+ year = {2004},
+ isbn = {1-58113-864-4},
+ pages = {506--513},
+ location = {New York, New York},
+ doi = {http://dx.doi.org/10.1109/AAMAS.2004.75},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
+ @ARTICLE{pomdp,
+    author = {Leslie Pack Kaelbling and Michael L. Littman and Anthony R. Cassandra},
+    title = {Planning and Acting in Partially Observable Stochastic Domains},
+    journal = {Artificial Intelligence},
+    year = {1995},
+    volume = {101},
+    pages = {99--134}
+}
+@article{automatedtrading,
+ author = {Tesauro, Gerald and Kephart, Jeffrey O.},
+ title = {Pricing in Agent Economies Using Multi-Agent Q-Learning},
+ journal = {Autonomous Agents and Multi-Agent Systems},
+ volume = {5},
+ number = {3},
+ year = {2002},
+ issn = {1387-2532},
+ pages = {289--304},
+ doi = {http://dx.doi.org/10.1023/A:1015504423309},
+ publisher = {Kluwer Academic Publishers},
+ address = {Hingham, MA, USA},
+ }
+ @inproceedings{distributedcontrol,
+ author = {Wiering, Marco},
+ title = {Multi-Agent Reinforcement Leraning for Traffic Light Control},
+ booktitle = {ICML '00: Proceedings of the Seventeenth International Conference on Machine Learning},
+ year = {2000},
+ isbn = {1-55860-707-2},
+ pages = {1151--1158},
+ publisher = {Morgan Kaufmann Publishers Inc.},
+ address = {San Francisco, CA, USA},
+ }
+ @INPROCEEDINGS{Riedmiller_karlsruhebrainstormers,
+    author = {M. Riedmiller and A. Merke and D. Meier and A. Hoffmann and A. Sinner and O. Thate and R. Ehrmann},
+    title = {Karlsruhe Brainstormers - A Reinforcement Learning approach to robotic soccer},
+    booktitle = {RoboCup-2000: Robot Soccer World Cup IV, LNCS},
+    year = {},
+    pages = {367--372},
+    publisher = {Springer}
+}
+@INPROCEEDINGS{elevator1,
+    author = {Robert H. Crites and Andrew G. Barto},
+    title = {Improving elevator performance using reinforcement learning},
+    booktitle = {Advances in Neural Information Processing Systems 8},
+    year = {1996},
+    pages = {1017--1023},
+    publisher = {MIT Press}
+}
+@article{elevator2,
+ author = {Crites, Robert H. and Barto, Andrew G.},
+ title = {Elevator Group Control Using Multiple Reinforcement Learning Agents},
+ journal = {Mach. Learn.},
+ volume = {33},
+ number = {2-3},
+ year = {1998},
+ issn = {0885-6125},
+ pages = {235--262},
+ doi = {http://dx.doi.org/10.1023/A:1007518724497},
+ publisher = {Kluwer Academic Publishers},
+ address = {Hingham, MA, USA},
+ }
+
+
+
+
+
+
+
 
