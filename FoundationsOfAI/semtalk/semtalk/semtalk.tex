@@ -145,8 +145,8 @@
 \begin{frame}
   \frametitle{The Idea of Reinforcement Learning}
   \begin{itemize}
-  \item learning by interacting with the environment
-  \item taking actions and receiving rewards
+  \item learning by \textcolor{red}{interacting with the environment}
+  \item taking actions and receiving \textcolor{red}{rewards}
   \item trying to maximize long-term reward
   \item mathematical description: \textcolor{red}{Markov Decision Process}
   \end{itemize}
@@ -188,17 +188,17 @@
 \pause
 \item \textbf{Unsupervised Learning}
 \begin{itemize}
-\item just "raw data" without labeling given
+\item just \textcolor{red}{"raw data"} without labeling given
 \item no "teacher"
 \item example: clustering methods (k-means,...)
 \end{itemize}
 \pause
 \item \textbf{Reinforcement Learning}
 \begin{itemize}
-\item learning by interacting with the environment
+\item learning by \textcolor{red}{interacting with the environment}
 \item "natural" approach (related to human learning)
 \item feedback from environment in terms of rewards
-\item goal: maximize long-term reward
+\item goal: \textcolor{red}{maximize long-term reward}
 \end{itemize}
 \end{itemize}
 \end{frame}         
@@ -215,7 +215,7 @@
 \end{align}
 \end{equation}
 \end{block}
-The probability distribution of the next state only depends on the previous state and not on all the states visited before
+The probability distribution of the next state \textcolor{red}{only depends on the previous state} and not on all the states visited before
 \end{frame}
 \begin{frame}
 \frametitle{Markov Decision Process(MDP)}
@@ -250,15 +250,53 @@ In order to find an optimal way from the state to the goal we have to do the fol
 \end{itemize}
 \end{block}
 \end{frame}
+
+\subsection{State-Value and Action-Value-Function}
+\begin{frame}
+\frametitle{State-Value Function}
+\begin{definition}[State-value function]
+The function
+\begin{equation*}
+V^{\pi}(s)=E_{\pi}\left\{R_{t}|s_{t}=s \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s  \right\}
+\end{equation}
+is called the state-value function for policy $\pi$. $E_{\pi}{}$ is the expected value assuming the agent follows the policy $\pi$ with an arbitrary time step $t$.
+\end{definition}
+\begin{definition}[Optimal state-value function]
+The function
+\begin{equation*}
+V^{*}(s)=\max_{\pi}{V^{\pi}(s)} \forall s \in \mathcal{S}
+\end{equation}
+is called optimal state-value function.
+\end{definition}
+\end{frame}
+\begin{frame}
+\frametitle{Action-Value Function}
+\begin{definition}[Action-value function]
+The function
+\small
+\begin{equation*}
+Q^{\pi}(s,a)=E_{\pi}\left\{R_{t}|s_{t}=s, a_{t}=a \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s, a_{t}=a  \right\}
+\end{equation}
+is called the action-value function for policy $\pi$. 
+\end{definition}
+\begin{definition}[Optimal action-value function]
+The function
+\begin{equation*}
+Q^{*}(s,a)=\max_{\pi}{Q^{\pi}(s,a)} \forall s \in \mathcal{S}\ and \ a \in \mathcal{A}(s)
+\end{equation}
+is called optimal action-value funciton.
+\end{definition}
+\end{frame}
+
 \subsection{Policies}
 \begin{frame}
 \frametitle{Properties of Policies}
 \begin{itemize}
 \item Tell the agent which action to choose in each possible situation
-\item may be deterministic or stochastic
+\item may be \textcolor{red}{deterministic} or \textcolor{red}{stochastic}
 \begin{itemize}
-\item deterministic policies: action is clearly specified
-\item actions are taken with a defined probability (necessary in many games)
+\item \textbf{deterministic policies}: action is clearly specified
+\item \textbf{stochastic policies}: actions are taken with a defined probability (necessary in many games)
 \end{itemize}
 \item should lead the agent to a goal state as fast as possible
 \end{itemize}
@@ -321,42 +359,6 @@ p(s,a)=\frac{e^{\frac{Q(s,a)}{\tau}}}{\sum_{a'}{e^{\frac{Q(s,a')}{\tau}}}}
 \end{equation}
 \end{block}
 \end{frame}
-\subsection{State-Value and Action-Value-Function}
-\begin{frame}
-\frametitle{State-Value Function}
-\begin{definition}[State-value function]
-The function
-\begin{equation*}
-V^{\pi}(s)=E_{\pi}\left\{R_{t}|s_{t}=s \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s  \right\}
-\end{equation}
-is called the state-value function for policy $\pi$. $E_{\pi}{}$ is the expected value assuming the agent follows the policy $\pi$ with an arbitrary time step $t$.
-\end{definition}
-\begin{definition}[Optimal state-value function]
-The function
-\begin{equation*}
-V^{*}(s)=\max_{\pi}{V^{\pi}(s)} \forall s \in \mathcal{S}
-\end{equation}
-is called optimal state-value function.
-\end{definition}
-\end{frame}
-\begin{frame}
-\frametitle{Action-Value Function}
-\begin{definition}[Action-value function]
-The function
-\small
-\begin{equation*}
-Q^{\pi}(s,a)=E_{\pi}\left\{R_{t}|s_{t}=s, a_{t}=a \right\}=E_{\pi}\left\{ \left. \sum_{k=0}^{\infty}{\gamma^{k}r_{t+k+1}}\right|s_{t}=s, a_{t}=a  \right\}
-\end{equation}
-is called the action-value function for policy $\pi$. 
-\end{definition}
-\begin{definition}[Optimal action-value function]
-The function
-\begin{equation*}
-Q^{*}(s,a)=\max_{\pi}{Q^{\pi}(s,a)} \forall s \in \mathcal{S}\ and \ a \in \mathcal{A}(s)
-\end{equation}
-is called optimal action-value funciton.
-\end{definition}
-\end{frame}
 \subsection{Basic algorithms}
 \begin{frame}
 \frametitle{Categorization of RL- Algorithms}
@@ -378,7 +380,7 @@ is called optimal action-value funciton.
 \frametitle{Categorization of RL- Algorithms}
 \begin{block}{Temporal Difference Learning}
 \begin{itemize}
-\item do not require full world knowledge
+\item do not require full world knowledge ($\rightarrow$ \textcolor{red}{model free})
 \item update values of states based on values of successor states
 \item distinction between \textcolor{red}{On}- and \textcolor{red}{Off}- Policy algorithms
 \begin{itemize}
@@ -392,8 +394,8 @@ is called optimal action-value funciton.
 \begin{frame}
 \frametitle{Policy Iteration- A Dynamic Programming Method}
 \begin{itemize}
-\item Assumption: World is completely known (possible states, transition probabilities, rewards...)
-\item Idea:
+\item Assumption: World is \textcolor{red}{completely known} (possible states, transition probabilities, rewards...)
+\item \textcolor{red}{Idea}:
 \begin{itemize}
 \item Start with an initital policy
 \item compute values of states and update the policy
@@ -482,18 +484,31 @@ is called optimal action-value funciton.
 \begin{frame}
 \frametitle{Problems when advancing from RL to MARL}
 \begin{itemize}
-\item Markov Decision Processes as framework no longer sufficient in most cases $\rightarrow$ Markov Games as a new framework
-\item Different relations between agents have to be considered
+\item Markov Decision Processes as framework no longer sufficient in most cases $\rightarrow$ \textcolor{red}{Markov Games} as a new framework
+\item Different \textcolor{red}{relations} between agents have to be considered
 \begin{itemize}
-\item Fully cooperative (robot swarm exploring the world, soccer players of one team)
-\item Fully competitive (playing a game against other agents)
-\item Mixed
+\item Fully \textcolor{red}{cooperative} (robot swarm exploring the world, soccer players of one team)
+\item Fully \textcolor{red}{competitive} (playing a game against other agents)
+\item \textcolor{red}{Mixed}
 \end{itemize}
-\item coordination between the agents
-\item complexity rises $\rightarrow$ exponential in the number of agents
+\item \textcolor{red}{coordination} between the agents
+\item \textcolor{red}{complexity} rises $\rightarrow$ exponential in the number of agents
 \item \textcolor{red}{Nonstationarity} of the MARL learning problem (best policy always changes, because policies of other agents change)
-\item information about the other agents has to be collected (agent model)
+\item \textcolor{red}{information} about the \textcolor{red}{other agents} has to be collected (agent model)
 \end{itemize}
+\end{frame}
+\subsection{MARL- An Overview}
+\begin{frame}
+\frametitle{Overview of MARL algorithms}
+\begin{center}
+\includegraphics[viewport=312 416 562 615,keepaspectratio,clip,page=1]{../../survey1.pdf}
+\end{center}
+\end{frame}
+\begin{frame}
+\frametitle{MARL Algorithms by the type of Task}
+\begin{center}
+\includegraphics[viewport=299 509 549 733,keepaspectratio,clip,page=6, scale=0.9]{../../survey2.pdf}
+\end{center}
 \end{frame}
 \begin{frame}
 \frametitle{Markov Games}
@@ -501,12 +516,12 @@ is called optimal action-value funciton.
 Components of a Markov Game:
 \begin{itemize}
 \item a set of states $\mathcal{S}$
-\item a collection of action sets $\mathcal{A}_{1},...,\mathcal{A}_{k}$ for each agent
+\item a \textcolor{red}{collection of action sets} $\mathcal{A}_{1},...,\mathcal{A}_{k}$ for \textcolor{red}{each agent}
 \item A transition function $T$ (mapping current state and actions to new state with a certain probability)
 \begin{equation*}
 T:\mathcal{S} \times \mathcal{A}_{1} \times ... \times \mathcal{A}_{k} \times \mathcal{S} \mapsto [0,1]
 \end{equation}
-\item reward functions $R_{i}$ for each agent $i$:
+\item reward functions $R_{i}$ for \textcolor{red}{each agent} $i$:
 \begin{equation*}
 \mathcal{R}_{i}:\mathcal{S} \times \mathcal{A}_{1} \times ... \times \mathcal{A}_{k} \times \mathcal{S} \mapsto \mathbb{R}
 \end{equation}
@@ -536,20 +551,20 @@ E\left\{\sum_{j=0}^{\infty}{\gamma^{j} r_{i,t+j}}\right\}
 \end{block}
 \end{frame}
 \begin{frame}
-\frametitle{Classification of MARL tasks}
+\frametitle{Classification of MARL Tasks}
 \begin{itemize}
-\item \textcolor{red}{Fully cooperative tasks}: All agents have the same goal\\
+\item \textbf{Fully cooperative tasks}: All agents have the \textcolor{red}{same goal}\\
 Example: Explore the world most efficiently
-\item \textcolor{red}{Fully competitive tasks}: Agents have an opposite goal (try to minimize the reward of the other agent)\\
+\item \textbf{Fully competitive tasks}: Agents have an \textcolor{red}{opposite goal} (try to minimize the reward of the other agent)\\
 Example: Try to win against the agents of the other team in robot soccer
-\item \textcolor{red}{Mixed tasks}: Agents cooperate, but also act in an egoistic way\\
+\item \textbf{Mixed tasks}: Agents \textcolor{red}{cooperate}, but also act in an \textcolor{red}{egoistic} way\\
 Example: Two robots cleaning a big and a small floor. The joint task is to clean the whole building, but each robot wants to clean the smaller floor in order to have less work
 \begin{itemize}
-\item \textcolor{red}{agent independent}:
+\item \textbf{agent independent}:
 Common structure based on Q-Learning is shared between the agents
-\item \textcolor{red}{agent tracking}:
+\item \textbf{agent tracking}:
 Decision is based on a model of the other agents
-\item \textcolor{red}{agent aware}:
+\item \textbf{agent aware}:
 Agent tries to adapt to the other agents
 \end{itemize}
 \end{itemize}
@@ -558,17 +573,17 @@ Agent tries to adapt to the other agents
 \begin{frame}
 \frametitle{Fully cooperative Tasks}
 \begin{itemize}
-\item Reward functions of agents are identical ($\mathcal{R}_{1}=...=\mathcal{R}_{n}$)
+\item \textcolor{red}{Reward functions} of agents are \textcolor{red}{identical} ($\mathcal{R}_{1}=...=\mathcal{R}_{n}$)
 \item Naive approach:
 \begin{itemize}
-\item Use joint Q-Function (i.e. each agents uses the same function table) and update it with the Q-Learning algorithm
-\item Use greedy policy to maximize the common return:
+\item Use \textcolor{red}{joint Q-Function} (i.e. each agent uses the same function table) and update it with the Q-Learning algorithm
+\item Use \textcolor{red}{greedy policy} to maximize the \textcolor{red}{common return}:
 \begin{equation*}
 h_{i}^{*}(s)= arg \max_{a_{i}}{\max_{a_{1},...,a_{k}}{Q^{*}(s,a_{1},...,a_{k})}}
 \end{equation}
 \end{itemize}
-\item Seems nice, but what happens if there are more than one maximizing action tuples? $\rightarrow$ Coordination Problem
-\item Additional problem: Q tables may become very large (all combinations of actions of the agents have to be considered)
+\item Seems nice, but what happens if there are more than one maximizing action tuples? $\rightarrow$ \textcolor{red}{Coordination Problem}
+\item Additional problem: \textcolor{red}{Q tables} may become very \textcolor{red}{large} (all combinations of actions of the agents have to be considered)
 \end{itemize}
 \end{frame}
 \begin{frame}
@@ -583,10 +598,10 @@ h_{i}^{*}(s)= arg \max_{a_{i}}{\max_{a_{1},...,a_{k}}{Q^{*}(s,a_{1},...,a_{k})}}
 \begin{itemize}
 \item $\mathcal{R}_{1}=-\mathcal{R}_{2}$
 \item \textcolor{red}{Zero sum games}
-\item Idea: maximize your own benefit under the assumption that your opponent always tries to minimize it
-\item Important algorithm: Minimax-Q
+\item Idea: maximize your own benefit under the assumption that your opponent \textcolor{red}{always tries to minimize it}
+\item Important algorithm: \textcolor{red}{Minimax-Q}
 \item bad performance against agents playing not optimal
-\item improvement: learning opponent models, e.g. by counting, how many times an agent $i$ ovserved an agent $j$ taking an action $a_{j}$ in state $s$:
+\item improvement: learning \textcolor{red}{opponent models}, e.g. by counting, how many times an agent $i$ ovserved an agent $j$ taking an action $a_{j}$ in state $s$:
 \begin{equation*}
 h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,a_{j}')}}
 \end{equation}
@@ -598,9 +613,9 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \begin{itemize}
 \item \textbf{Initialization}
 \begin{algorithmic}
-\STATE $\forall s \in \mathcal{S},a \in \mathcal{A}, o \in \mathcal{O} \ Q(s,a,o) \gets 1$
-\STATE $\forall s \in \mathcal{S} \ V(s) \gets 1$
-\STATE $\forall s \in \mathcal{S}, a \in \mathcal{A} \ \pi(s,a) \gets 1/|A|$
+\STATE $\forall s \in \mathcal{S},a \in \mathcal{A}, o \in \mathcal{O}: \ Q(s,a,o) \gets 1$
+\STATE $\forall s \in \mathcal{S}: \ V(s) \gets 1$
+\STATE $\forall s \in \mathcal{S}, a \in \mathcal{A}: \ \pi(s,a) \gets 1/|A|$
 \STATE $\alpha \gets 1.0$
 \end{algorithmic}
 \end{itemize}
@@ -669,8 +684,8 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \frametitle{Robot-soccer Results}
 \includegraphics[viewport=115 602 523 699,keepaspectratio,clip,page=6, scale=0.8]{../../ml94-final.pdf}
 \begin{itemize}
-\item Minimax-Q is insensitve against the opponent against which it was trained
-\item Minimax assumption not good against non-optimal opponents
+\item Minimax-Q is \textcolor{red}{insensitive} against the opponent against which it was trained
+\item Minimax assumption \textcolor{red}{not good} against \textcolor{red}{non-optimal} opponents
 \item Minimax-Q uses stochastic policies, Q-Learning only deterministic (reason for always losing against challenger)
 \end{itemize}
 \end{frame}
@@ -687,17 +702,17 @@ h_{j}^{i}(s,a_{j})=\frac{C_{j}^{i}(s,a_{j})}{\sum_{a_{j}'\in A_{j}}{C_{j}^{i}(s,
 \begin{frame}
 \frametitle{Mixed Tasks}
 \begin{itemize}
-\item no restrictions to the reward function
+\item \textcolor{red}{no restrictions} to the reward function
 \item \textcolor{red}{General sum games}
-\item strongly influenced by game theoretic equilibrium concepts
-\item distinction between agent-independent, agent-tracking and agent-aware methods, Here: only agent-independent methods
+\item strongly influenced by game theoretic \textcolor{red}{equilibrium concepts}
+\item distinction between \textcolor{red}{agent-independent}, \textcolor{red}{agent-tracking} and \textcolor{red}{agent-aware} methods, Here: only agent-independent methods
 \item Two approaches
 \begin{itemize}
-\item Apply single agent algorithms (like Q-Learning) to the multiagent case (problem: nonstationarity, only sometimes converts to an equilibrium, advantage:very simple)
-\item find equilibria for stage games
+\item Apply \textcolor{red}{single agent algorithms} (like Q-Learning) to the multiagent case (problem: nonstationarity, only sometimes converts to an equilibrium, advantage:very simple)
+\item find \textcolor{red}{equilibria} for stage games
 \end{itemize}
 \item Important algorithm: Nash-Q Learning
-\item problem: Which equilibrium to choose if there is more than one equilibrium? $\rightarrow$ equilibrium selection problem
+\item problem: Which equilibrium to choose if there is more than one equilibrium? $\rightarrow$ \textcolor{red}{equilibrium selection problem}
 \end{itemize}
 \end{frame}
 \begin{frame}
@@ -725,19 +740,6 @@ Q_{i,t+1}(s_{t},a_{1,t},...a_{k,t})=&Q_{i,t}(s,a_{1,t},...a_{k,t})\\
 \item \textcolor{red}{$solve_{i}$} returns the equilibrium strategy for agent $i$ (e.g. choose action $a_{1}$ with probability $p(a_{1})$, action $a_{2}$ with probability $p(a_{2})$,...)
 \item \textcolor{red}{$eval_{i}$} returns the agent's expected return given the equilibrium
 \end{itemize}
-\end{frame}
-\subsection{MARL- An Overview}
-\begin{frame}
-\frametitle{Overview of MARL algorithms}
-\begin{center}
-\includegraphics[viewport=312 416 562 615,keepaspectratio,clip,page=1]{../../survey1.pdf}
-\end{center}
-\end{frame}
-\begin{frame}
-\frametitle{MARL Algorithms by the type of Task}
-\begin{center}
-\includegraphics[viewport=299 509 549 733,keepaspectratio,clip,page=6, scale=0.9]{../../survey2.pdf}
-\end{center}
 \end{frame}
 \subsection{Applications of MARL}
 \begin{frame}
