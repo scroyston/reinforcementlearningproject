@@ -1,0 +1,1 @@
+This project is based on my seminar paper on reinforcement learning. There will be some examples of reinforcement learning algorithms such as QLearning or SARSA.
